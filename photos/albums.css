@@ -1,0 +1,92 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* -- PHOTOS ALBUM CONTENT -- */
+.albumContent {
+	min-width:758px !important;
+	max-width:1000px;
+} 
+
+.albumL,.albumR { 
+	clear:both; 
+	padding:10px 0px;
+}
+.albumL h4{
+	margin-top:0.5em !important;
+}
+.albumR h4{
+	margin-top:0.5em !important;
+}
+.albumL img {
+	float:left;
+	margin-right:20px;
+}
+.albumR img {
+	float:right;
+	margin-left:20px;
+}
+.albumDay {
+	width:240px;
+	display:inline-table;
+	vertical-align:top;
+	margin:15px 10px 0px 0px;	
+}
+.albumDay img {
+	cursor:pointer;
+}
+.albumText {
+	padding-left:0.5em;
+	margin-top:0.5em; 
+}
+.albumText p {
+	font-size:14px !important;
+	display: inline;
+}
+.albumText h4 {
+	display:inline;
+}
+
+
+	/* -- FULL SCREEN SLIDESHOW -- */
+#fullScrSlideshowDim {
+	visibility:hidden;
+	width:100%;
+	height:100%;
+	background:#000000;
+	opacity:0.8;
+	position:fixed;
+	top:0px;
+	left:0px;
+	z-index:5;
+}
+#fullScrSlideshow {
+	visibility:hidden;
+	position:fixed;
+	z-index:10;
+	background:#F7F8E1;
+	border:solid 1px #000000;
+	padding:8px;
+}
+#ssNavLeft {
+	position:fixed;
+	left:50px;
+	opacity:0.9;
+	cursor:pointer;
+}
+#ssNavRight {
+	position:fixed;
+	right:50px;
+	opacity:0.9;
+	cursor:pointer;
+}
+#exit {
+	position:fixed;
+	cursor:pointer;
+	top:20px;
+	right:20px;
+	font-size:36px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	color:#FFFFFF;
+	opacity:1.0 !important;
+}

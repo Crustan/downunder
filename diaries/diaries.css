@@ -1,0 +1,71 @@
+@charset "UTF-8";
+/* CSS DIARIES */
+
+	/* -- CONTENT DIARIES -- */
+.day {
+	color:#021B9C;
+	float:right;
+}
+.place {
+	float:right;
+}
+.prevNext {
+	font-size:12px;
+	padding:5px;
+}
+.prevNext a{
+	text-decoration:none;
+	color:#021B9C;	
+}
+.author {
+	margin-left:20px;
+	color:#A00A0A;
+	text-shadow:#9FD781 1px 1px;
+}
+.date {
+	margin-left:20px;
+	color:#A00A0A;
+	text-shadow:#9FD781 1px 1px;
+}
+.splitter {
+	color:#A00A0A;
+	text-shadow:#9FD781 1px 1px;
+	text-align:center;
+	font-size:24px;
+	margin:-0.5em;
+}
+
+	/* -- CONTENT SLIDESHOW -- */
+#slideshow {
+	position:relative;
+	text-align:center;
+	margin:10px 0px;
+}
+#ssNavL {
+	position:absolute;
+	left:0px;
+	bottom:150px;
+	cursor:pointer;
+	padding:0px !important;
+	border:none !important;
+}
+#ssNavR {
+	position:absolute;
+	right:0px;
+	bottom:150px;
+	cursor:pointer;
+	padding:0px !important;
+	border:none !important;
+}
+#ssPic {
+	margin:0px 3px;
+	background:#F7F8E1;
+	border:solid 1px #9FD781;
+	padding:8px;
+}
+	/* -- CONTENT INTRO DIARIES -- */
+#intro img {
+	border:1px solid #9FD781;
+	padding:8px;
+	margin:0px 10px 10px 0px; 
+}
