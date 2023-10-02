@@ -1,0 +1,61 @@
+@charset "UTF-8";
+/* CSS Startpage */
+
+#content {
+	width:980px !important;
+	max-width:1050px !important;
+	text-align:justify;
+	margin-left:auto;
+	margin-right:auto;
+}
+#content h2 {
+	margin-bottom:0em;
+}
+h4 {
+	margin-bottom:16px !important;
+	color:#021B9C;
+	text-shadow:#9FD781 1px 1px;
+	font-weight:100;
+}
+#slideshowStart {
+	margin:50px 0px 20px 20px;
+}
+#columns {
+	display:inline-block;
+	position:relative;
+	width:980px;
+	margin-top:10px;
+}
+#columns p {
+	text-align:left;
+	margin-top:3px;
+	font-size:14px;
+}
+#columns a {
+	color:#021B9C;
+}
+#startIntro {
+	width:440px;
+}
+.startCol {
+	width:305px;
+	height:200px;
+	padding:10px;
+	float:left;
+	vertical-align:top;
+}
+#col2 {
+	border-left:solid 1px #9FD781;
+	border-right:solid 1px #9FD781;
+}
+#startCol3 div {
+	padding:0px;
+}
+#columns h3 {
+	font-family: 'Bree Serif', serif;
+	font-size:24px;
+	font-weight:100;
+	color:#021B9C;
+	text-shadow:#A00A0A 1px 1px;
+	margin:0px 0px;
+}

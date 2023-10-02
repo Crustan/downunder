@@ -1,0 +1,276 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+
+
+body {
+	background:#9FD781;
+	font-family: 'Bree Serif', serif;
+	padding:0px;
+	margin:0px;
+	position:relative;
+}
+#wrapper {
+	background:#F7F8E1;
+	height:100%;
+	margin:0px 0px;
+	width:100%;
+	min-width:1000px;
+}
+
+#headerNav {
+	background:#F2D908;
+	width:100%;
+	min-width:1000px;
+	height:153px;
+	border-bottom:#A00A0A 3px solid;
+	padding: 0px;
+	margin: 0px;
+}
+
+/* --- HEADER --- */
+
+#header {
+	padding:10px 0px;
+	color:#F7F8E1;
+	position:relative;
+	min-width:1000px;
+}
+#header #pic0 {
+	position:absolute;
+	top:15px;
+	left:550px;
+}
+#header #pic1 {
+	position:absolute;
+	top:15px;
+	left:700px;
+}
+h1 {
+	font-size:72px;
+	font-weight: 900;
+	margin-left:10px;
+	margin-top:0em;
+	margin-bottom:0em;
+	text-shadow:#9FD781 3px 2px;
+}
+#header h2 {
+	font-size:36px;
+	font-weight: 700;
+	margin:0 0 0 12px;
+	text-shadow:#9FD781 2px 1px;
+}
+
+/* --- NAVIGATION --- */
+
+#navigation {
+	background:#F2D908;
+	min-width:800px;
+	padding-left:200px;
+	display:block;
+	position:absolute;
+	padding-bottom: 0px;
+	top:125px;
+	z-index: 0;
+}
+#navigation a {
+	background:#021B9C;
+	display:inline;
+	position:relative;
+	font-size:24px;
+	text-decoration:none;
+	color:#F7F8E1;
+	text-shadow:#A00A0A 1px 1px;
+	margin: 0px 5px;
+	padding:5px 7px 3px 7px;
+}
+#navigation a:hover {
+	background:#F7F8E1;
+	color:#021B9C;
+	padding:3px 8px 6px 8px;
+	margin:2px;
+	border:solid 3px #A00A0A;
+	border-bottom:none;
+	z-index: 10;
+}
+#navigation a.thisPage {
+	background:#F7F8E1;
+	color:#021B9C;
+	padding:3px 8px 6px 8px;
+	margin:0px 2px;
+	border:solid 3px #A00A0A;
+	border-bottom:none;
+	z-index: 100;
+}
+
+/* --- MAIN SECTION --- */
+
+#main {
+	float:left;
+	width:100%;
+	min-width:1000px;										/* Minsta fönsterstorlek*/
+	background:#F7F8E1;
+	z-index: 10;
+}
+	/* -- LOCAL NAVIGATION -- */
+#localNav {
+	margin:10px 0px 10px 10px;
+	background:#F7F8E1;
+	border:solid 1px #9FD781;
+	width:170px;
+	float:left;
+	padding:10px;
+	position:relative;
+}
+#localNav a {
+	display:block;
+	font-size:14px;
+	color:#021B9C;
+	text-decoration:none;
+	padding:2px 0px;
+}
+#localNav a:hover {
+	display:block;
+	font-size:14px;
+	color:#021B9C;
+	background:#9FD781 !important;
+	text-decoration:none;
+}
+#localNav h4 {
+	margin:0px;
+	margin-bottom:3px; 
+	padding:5px;
+	color:#F7F8E1;
+	text-shadow:#A00A0A 1px 1px;
+	font-weight:100;
+	text-decoration:none;
+	background:#021B9C;
+}
+.thisLocal {
+	display:block;
+	font-size:14px;
+	color:#021B9C;
+	background:#9FD781 !important;
+	text-decoration:none;
+}
+	/* -- CONTENT -- */
+#content {
+	background:#F7F8E1;
+	padding:10px;
+	float:left;
+	position:relative;
+	width:55%;
+	min-width:550px;
+	max-width:800px;
+	min-height:417px;
+}
+#content h2 {
+	color:#021B9C;	
+	font-size:36px;
+	margin:0px;
+	text-shadow:#9FD781 2px 1px;
+}
+#content h3 {
+	margin:-0.5em 0px 1em;
+}
+#content h4 {
+	margin:1em 0px 0em;
+	color:#021B9C;
+	text-shadow:#9FD781 1px 1px;
+	font-weight:100;
+}
+#content p {
+	font-family:"Grandesign Neue Serif";
+	font-size:16px;
+	margin-top:0px;
+	text-align:justify;
+}
+#content li {
+	margin: -0.7em 15px;
+	font-family:"GranDesign Neue Serif";
+	list-style: circle;
+}
+#content img {
+	background:#F7F8E1;
+	border:solid 1px #9FD781;
+	padding:8px;
+}
+
+	/* -- RIGHT COLUMN -- */
+#rightCol div {
+	margin:10px 0px 0px 10px;
+	padding:10px;
+	border:1px solid #9FD781;
+	float:left;
+	position:relative;
+	width:190px;
+}
+#rightCol h3 {
+	margin:0px;
+	color:#021B9C;
+	text-shadow:#9FD781 1px 1px;
+	font-weight:100;
+}
+#rightCol h4 {
+	margin:0px;
+	color:#021B9C;
+	text-shadow:#9FD781 1px 1px;
+	font-weight:100;
+	text-decoration:none;
+}
+#rightCol p {
+	font-family:"Grandesign Neue Serif";
+	font-size:16px;
+	margin-top:0px;
+}
+#rightCol a {
+	font-family:"Grandesign Neue Serif";
+	color:#021B9C;
+	display:block;
+	margin-top:4px;
+}
+#rightCol img {
+	background:#F7F8E1;
+	border:solid 1px #9FD781;
+	padding:8px;
+	text-align:center;
+}
+
+/* --- FOOTER --- */
+#footer {
+	background:#9FD781;
+	clear:both;
+	width:100%;
+	padding:0.1em 0px;
+	font-size:12px;
+}
+#footer p {
+	margin-left:10px;
+	margin-right:10px;
+}
+#kiwiDiv {
+	position:relative;
+}
+#kiwi {
+	position:absolute;
+	bottom:10px;
+	right:0px;
+	visibility:visible;
+}
+
+iframe {
+	margin: 5px 0px;
+}
+
+/* GLOBALA KLASSER */
+.alignRight {float:right;}
+.alignLeft {float:left;}
+
+/* FONTS */
+@font-face {
+	font-family:"Grandesign Neue Serif";
+	src: url('fonts/Grandesign Neue Serif.ttf');
+}
+/* GOOGLE FONTS */
+font-family: 'Bree Serif', serif;

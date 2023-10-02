@@ -1,0 +1,13 @@
+<!ELEMENT diaries (diary+)>
+	<!ELEMENT diary (creator, entry+)>
+		<!ELEMENT creator (#PCDATA)>
+		<!ELEMENT entry (author, day, date, place+, text)>
+			<!ELEMENT author (#PCDATA)>
+				<!ATTLIST author age CDATA #REQUIRED>
+			<!ELEMENT day (#PCDATA)>
+			<!ELEMENT date (#PCDATA)>
+				<!ATTLIST date short CDATA #REQUIRED>
+			<!ELEMENT place (city, country)>
+				<!ELEMENT city (#PCDATA)>
+				<!ELEMENT country (#PCDATA)>
+			<!ELEMENT text (#PCDATA)>
