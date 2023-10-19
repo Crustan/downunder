@@ -30,14 +30,6 @@
 		the_timeout = setTimeout("rotateImage();", 5000);							// Byt bild med 5 sekunders intervall
 	}
 	
-	function showHideRSSBox(value) {
-		var rss_box = document.getElementById("rssBox");
-		if (value == 1)
-			rss_box.style.visibility = "visible";
-		else
-			rss_box.style.visibility = "hidden";
-	}
-	
 	function checkIfKiwiRemove() { 												// Om fönstret är för litet så visas inte kiwifågel
 		if (window.innerWidth < 1280)											// längst ner i höger hörn
 			document.getElementById("kiwi").style.visibility = "hidden";
