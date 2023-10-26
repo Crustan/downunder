@@ -1,197 +1,228 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Söderberg Down Under | Dagböcker | Christians resa</title>
+    <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="diaries.css" media="all" />
+    <link href="http://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet" type="text/css" />
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
-  <title>Söderberg Down Under | Dagböcker | Christians resa</title>
-  <link rel="stylesheet" type="text/css" href="../style.css" media="all" />
-  <link rel="stylesheet" type="text/css" href="diaries.css" media="all" />
-  <link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css' />	
-  
-  <script type="text/javascript" language="javascript">
-  	<!-- hide me from older browsers
-	
-	function loadXMLDoc(url){													// Funktion för att ladda in XML-dokumentet med dagböcker
-		var xmlhttp = null;														// Nollställ
-		
-		if (window.XMLHttpRequest) {											// Kod för IE7+, Firefox, Chrome, Opera, Safari
-		  	xmlhttp = new XMLHttpRequest();
-		}
-		else {																	// Kod för IE6, IE5
-		  	xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.open("GET",url,false);
-		xmlhttp.send();
-		
-		return xml_document = xmlhttp.responseXML;								// Referens till XML-dokumentet				 
-	}
-	
-	function writePerson(name) {
-		var xml_document = loadXMLDoc("../diaries/diaries.xml");
-		var entries = xml_document.getElementsByTagName("entry");				// Skapa en array med alla inlägg
-		var author_entries = new Array;											// Skapa en array med för endast författarens inlägg
-		var HTML_diaries = "";													// Tom sträng initieras för den HTML som ska visas i <div id="diaries">
-		var HTML_entries = "";													// Tom sträng för HTML som ska visas som dagboksinlägg
-		var HTML_content_header = ""; 											// Tom sträng för HTML som ska visas som rubrik i i <div id="diaries">
-		
-		for (var i=0;i<entries.length;i++) {									// Kolla upp författaren för varje dagboksinlägg
-			var author = entries[i].getElementsByTagName("author")[0].childNodes[0].nodeValue;
+    <script type="text/javascript" language="javascript">
+      <!-- hide me from older browsers
 
-			if (author == name) 												// Om författare är samma som vald författare (name)...				
-			 	author_entries.push(entries[i]);								// ...lägg till författarens inlägg i egen array...
-		}
-		for (i=0;i<author_entries.length;i++) {									// ... och ta fram all info från varje inlägg
-				var HTML_entry = "";											// Tom sträng initieras för den HTML som innehåller ETT inlägg 
-				var author = author_entries[i].getElementsByTagName("author")[0].childNodes[0].nodeValue;	
-				var age = author_entries[i].getElementsByTagName("author")[0].attributes.getNamedItem("age").nodeValue;
-				var date = author_entries[i].getElementsByTagName("date")[0].childNodes[0].nodeValue;
-				var day = author_entries[i].getElementsByTagName("day")[0].childNodes[0].nodeValue;
-				var place = "";													// Tom sträng initieras för place											
-				var cities = author_entries[i].getElementsByTagName("city");
-				var country = author_entries[i].getElementsByTagName("country")[0].childNodes[0].nodeValue;
-				var text = author_entries[i].getElementsByTagName("text")[0].childNodes[0].nodeValue;
-				//short_date = author_entries[i].getElementsByTagName("date")[0].attributes.getNamedItem("short").nodeValue;
-				
-				text = checkTextForLineBreaks(text);									// Kolla om radbrytningar finns, isf behåll dessa
-																	
-				for (var loop=0;loop<cities.length;loop++) {							// Skapa en sträng med staden/städerna
-					city = cities[loop].childNodes[0].nodeValue;
-					if (place == "")													// Om strängen är tom, lägg till stad
-						place = city;
-					else																// Annars lägg till komma-tecken och nästa stad
-						place = place+ ", " +city;										
-				}
-				if (cities.length < 3) {
-					if (city != "Singapore")											// Lägg ej till land för Singapore
-						place = place + " (" +country+ ")";								// Lägg till landet sist i strängen om färre än 3 städer
-				}
-				HTML_entry ="<div id='entry"+day+ "'><h4>" +date+ 						// Skapa HTML-kod för inlägget
-					"<span class='place'>" +place+ "</h4>" + "<p>" +text+ "</p></div>";		
-				if (i < author_entries.length-1)										// Om det finns fler inlägg för dagen, lägg till en avdelare	 
-					HTML_entry = HTML_entry + "<div class='splitter'>•  •  •</div>";
-				
-				HTML_entries = HTML_entries + HTML_entry;								// Lägg till HTML-koden sist i HTML-kod för alla dagens inlägg
-		}
-		HTML_content_header = "<h2>" +name+ "s resedagbok</h2>";						// Sätt samman HTML-kod
-		HTML_diaries = HTML_content_header + HTML_entries;			
-		document.getElementById("content").innerHTML = HTML_diaries;					// Skriv ut HTML-kod i div-taggen diaries
-	}
-	
-	function checkTextForLineBreaks(text) {												// Leta igenom text efter radbrytningar (\n) och 
-		var new_text = ""; 																// ersätt dessa med <br /> för HTML
-		var pos1 = 0; 
-		var pos2 = 0;
-		do {
-			pos2 = text.indexOf("\n",pos1);
-			if (pos2 > -1) 
-				new_text = new_text + text.substring(pos1,pos2) + "<br />";
-			else 
-				new_text = new_text + text.substring(pos1);
-			pos1 = pos2+1;
-		} while (pos2 > -1);	
-		
-		return new_text;
-	}
-	
-	function chkKiwi() { 														// Om fönstret är för litet så visas inte kiwifågel
-		if (window.innerWidth < 1080)											// längst ner i höger hörn
-			document.getElementById("kiwi").style.visibility = "hidden";
-		else
-			document.getElementById("kiwi").style.visibility = "visible";
-	}
-	// show me -->
-  </script>
-</head>
+      function loadXMLDoc(url) {
+        // Funktion för att ladda in XML-dokumentet med dagböcker
+        var xmlhttp = null; // Nollställ
 
-<body onload="writePerson('Christian'); chkKiwi();" onresize="chkKiwi()">
+        if (window.XMLHttpRequest) {
+          // Kod för IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp = new XMLHttpRequest();
+        } else {
+          // Kod för IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.open("GET", url, false);
+        xmlhttp.send();
 
-<div id="wrapper"> <!-- Page Wrapper -->
- 
- <div id="headerNav"> <!-- Header and navigation -->
-  <div id="header"> <!-- Page Header -->
-    <img src="../pics/map.png" id="pic0" alt="Oceanien" />
-    <img src="../pics/headerqoute.png" id="pic1" alt="Skippa charter och få en upplevelse för livet!" />
-    <h2>SÖDERBERG</h2>
-    <h1>DOWN UNDER</h1>
-  </div> <!-- End div id="header"-->
+        return (xml_document = xmlhttp.responseXML); // Referens till XML-dokumentet
+      }
 
-  <div id="navigation"> <!-- Global navigation -->  
-    <a href="../index.html">START</a>
-    <a href="../diaries.html" class="thisPage">RESEDAGBÖCKER</a>
-    <a href="../photos.html">FOTOALBUM</a>
-    <a href="../destinations.html">DESTINATIONER</a> 
-  </div> <!-- End div id="navigation"-->
- </div>	<!-- End div id="headerNav"-->
+      function writePerson(name) {
+        var xml_document = loadXMLDoc("../diaries/diaries.xml");
+        var entries = xml_document.getElementsByTagName("entry"); // Skapa en array med alla inlägg
+        var author_entries = new Array(); // Skapa en array med för endast författarens inlägg
+        var HTML_diaries = ""; // Tom sträng initieras för den HTML som ska visas i <div id="diaries">
+        var HTML_entries = ""; // Tom sträng för HTML som ska visas som dagboksinlägg
+        var HTML_content_header = ""; // Tom sträng för HTML som ska visas som rubrik i i <div id="diaries">
 
- <div id="main"> <!-- Main content section -->
+        for (var i = 0; i < entries.length; i++) {
+          // Kolla upp författaren för varje dagboksinlägg
+          var author = entries[i].getElementsByTagName("author")[0].childNodes[0].nodeValue;
 
-  <div id="localNav"> <!-- Local navigation -->
-    <h4>Christians dagbok</h4>
-    <a href="#entry1">Dag 1: Flyg till Singapore</a>
-    <a href="#entry2">Dag 2: Singapore</a>
-    <a href="#entry3">Dag 3: Auckland</a>
-    <a href="#entry4">Dag 4: Waitomo Caves</a>
-    <a href="#entry5">Dag 5: Rotorua</a>
-    <a href="#entry6">Dag 6: Napier</a>
-    <a href="#entry7">Dag 7: Masterton</a>
-    <a href="#entry8">Dag 8: Greymouth</a>
-    <a href="#entry9">Dag 9: Haast</a>
-    <a href="#entry10">Dag 10: Wanaka</a>
-    <a href="#entry11">Dag 11: Queenstown</a>
-    <a href="#entry12">Dag 12: Queenstown</a>
-   	<a href="#entry13">Dag 13: Dunedin</a>
-    <a href="#entry14">Dag 14: Dunedin</a>
-    <a href="#entry15">Dag 15: Dunedin</a>
-    <a href="#entry16">Dag 16: Christchurch</a>
-    <a href="#entry17">Dag 17: Brisbane</a>
-    <a href="#entry18">Dag 18: Brisbane</a>
-    <a href="#entry19">Dag 19: Brisbane</a>
-    <a href="#entry20">Dag 20: Brisbane</a>
-    <a href="#entry21">Dag 21: Brisbane</a>
-    <a href="#entry22">Dag 22: Brisbane</a>
-    <a href="#entry23">Dag 23: Tangalooma</a>
-    <a href="#entry24">Dag 24: Surfers Paradise</a>
-    <a href="#entry25">Dag 25: Surfers Paradise</a>
-    <a href="#entry26">Dag 26: Yamba</a>
-    <a href="#entry27">Dag 27: Port Macquarie</a>
-    <a href="#entry28">Dag 28: Belmont</a>
-    <a href="#entry29">Dag 29: Sydney</a>
-    <a href="#entry30">Dag 30: Sydney</a>
-    <a href="#entry31">Dag 31: Singapore</a>
-    <a href="#entry32">Dag 32: Singapore</a>
-    <a href="#entry33">Dag 33: Singapore</a>
-    <a href="#entry34">Dag 34: Singapore</a>
-    <a href="#entry35">Dag 35: Singapore</a>
-  </div><!-- End div id="localNav" -->
+          if (author == name)
+            // Om författare är samma som vald författare (name)...
+            author_entries.push(entries[i]); // ...lägg till författarens inlägg i egen array...
+        }
+        for (i = 0; i < author_entries.length; i++) {
+          // ... och ta fram all info från varje inlägg
+          var HTML_entry = ""; // Tom sträng initieras för den HTML som innehåller ETT inlägg
+          var author = author_entries[i].getElementsByTagName("author")[0].childNodes[0].nodeValue;
+          var age = author_entries[i].getElementsByTagName("author")[0].attributes.getNamedItem("age").nodeValue;
+          var date = author_entries[i].getElementsByTagName("date")[0].childNodes[0].nodeValue;
+          var day = author_entries[i].getElementsByTagName("day")[0].childNodes[0].nodeValue;
+          var place = ""; // Tom sträng initieras för place
+          var cities = author_entries[i].getElementsByTagName("city");
+          var country = author_entries[i].getElementsByTagName("country")[0].childNodes[0].nodeValue;
+          var text = author_entries[i].getElementsByTagName("text")[0].childNodes[0].nodeValue;
+          //short_date = author_entries[i].getElementsByTagName("date")[0].attributes.getNamedItem("short").nodeValue;
 
-  <div id="content"> <!-- Content -->
-  	<!-- Innehållet fylls med hjälp av JavaScript -->		
-  </div> <!-- End div id="content"-->
+          text = checkTextForLineBreaks(text); // Kolla om radbrytningar finns, isf behåll dessa
 
-  <div id="rightCol" > <!-- Right column -->
-    <div>
-    	<img src="christian_mini.jpg" alt="Christians dagbok" />
-    	<h3>Christian Söderberg</h3>
-    	Reseålder: 10 år
+          for (var loop = 0; loop < cities.length; loop++) {
+            // Skapa en sträng med staden/städerna
+            city = cities[loop].childNodes[0].nodeValue;
+            if (place == "")
+              // Om strängen är tom, lägg till stad
+              place = city;
+            // Annars lägg till komma-tecken och nästa stad
+            else place = place + ", " + city;
+          }
+          if (cities.length < 3) {
+            if (city != "Singapore")
+              // Lägg ej till land för Singapore
+              place = place + " (" + country + ")"; // Lägg till landet sist i strängen om färre än 3 städer
+          }
+          HTML_entry =
+            "<div id='entry" +
+            day +
+            "'><h4>" +
+            date + // Skapa HTML-kod för inlägget
+            "<span class='place'>" +
+            place +
+            "</h4>" +
+            "<p>" +
+            text +
+            "</p></div>";
+          if (i < author_entries.length - 1)
+            // Om det finns fler inlägg för dagen, lägg till en avdelare
+            HTML_entry = HTML_entry + "<div class='splitter'>•  •  •</div>";
+
+          HTML_entries = HTML_entries + HTML_entry; // Lägg till HTML-koden sist i HTML-kod för alla dagens inlägg
+        }
+        HTML_content_header = "<h2>" + name + "s resedagbok</h2>"; // Sätt samman HTML-kod
+        HTML_diaries = HTML_content_header + HTML_entries;
+        document.getElementById("content").innerHTML = HTML_diaries; // Skriv ut HTML-kod i div-taggen diaries
+      }
+
+      function checkTextForLineBreaks(text) {
+        // Leta igenom text efter radbrytningar (\n) och
+        var new_text = ""; // ersätt dessa med <br /> för HTML
+        var pos1 = 0;
+        var pos2 = 0;
+        do {
+          pos2 = text.indexOf("\n", pos1);
+          if (pos2 > -1) new_text = new_text + text.substring(pos1, pos2) + "<br />";
+          else new_text = new_text + text.substring(pos1);
+          pos1 = pos2 + 1;
+        } while (pos2 > -1);
+
+        return new_text;
+      }
+
+      function chkKiwi() {
+        // Om fönstret är för litet så visas inte kiwifågel
+        if (window.innerWidth < 1080)
+          // längst ner i höger hörn
+          document.getElementById("kiwi").style.visibility = "hidden";
+        else document.getElementById("kiwi").style.visibility = "visible";
+      }
+      // show me -->
+    </script>
+  </head>
+
+  <body onload="writePerson('Christian'); chkKiwi();" onresize="chkKiwi()">
+    <div id="wrapper">
+      <!-- Page Wrapper -->
+
+      <div id="headerNav">
+        <!-- Header and navigation -->
+        <div id="header">
+          <!-- Page Header -->
+          <img src="../pics/map.png" id="pic0" alt="Oceanien" />
+          <img src="../pics/headerqoute.png" id="pic1" alt="Skippa charter och få en upplevelse för livet!" />
+          <h2>SÖDERBERG</h2>
+          <h1>DOWN UNDER</h1>
+        </div>
+        <!-- End div id="header"-->
+
+        <div id="navigation">
+          <!-- Global navigation -->
+          <a href="../index.html">START</a>
+          <a href="../diaries.html" class="thisPage">RESEDAGBÖCKER</a>
+          <a href="../photos.html">FOTOALBUM</a>
+          <a href="../destinations.html">DESTINATIONER</a>
+        </div>
+        <!-- End div id="navigation"-->
+      </div>
+      <!-- End div id="headerNav"-->
+
+      <div id="main">
+        <!-- Main content section -->
+
+        <div id="localNav">
+          <!-- Local navigation -->
+          <h4>Christians dagbok</h4>
+          <a href="#entry1">Dag 1: Flyg till Singapore</a>
+          <a href="#entry2">Dag 2: Singapore</a>
+          <a href="#entry3">Dag 3: Auckland</a>
+          <a href="#entry4">Dag 4: Waitomo Caves</a>
+          <a href="#entry5">Dag 5: Rotorua</a>
+          <a href="#entry6">Dag 6: Napier</a>
+          <a href="#entry7">Dag 7: Masterton</a>
+          <a href="#entry8">Dag 8: Greymouth</a>
+          <a href="#entry9">Dag 9: Haast</a>
+          <a href="#entry10">Dag 10: Wanaka</a>
+          <a href="#entry11">Dag 11: Queenstown</a>
+          <a href="#entry12">Dag 12: Queenstown</a>
+          <a href="#entry13">Dag 13: Dunedin</a>
+          <a href="#entry14">Dag 14: Dunedin</a>
+          <a href="#entry15">Dag 15: Dunedin</a>
+          <a href="#entry16">Dag 16: Christchurch</a>
+          <a href="#entry17">Dag 17: Brisbane</a>
+          <a href="#entry18">Dag 18: Brisbane</a>
+          <a href="#entry19">Dag 19: Brisbane</a>
+          <a href="#entry20">Dag 20: Brisbane</a>
+          <a href="#entry21">Dag 21: Brisbane</a>
+          <a href="#entry22">Dag 22: Brisbane</a>
+          <a href="#entry23">Dag 23: Tangalooma</a>
+          <a href="#entry24">Dag 24: Surfers Paradise</a>
+          <a href="#entry25">Dag 25: Surfers Paradise</a>
+          <a href="#entry26">Dag 26: Yamba</a>
+          <a href="#entry27">Dag 27: Port Macquarie</a>
+          <a href="#entry28">Dag 28: Belmont</a>
+          <a href="#entry29">Dag 29: Sydney</a>
+          <a href="#entry30">Dag 30: Sydney</a>
+          <a href="#entry31">Dag 31: Singapore</a>
+          <a href="#entry32">Dag 32: Singapore</a>
+          <a href="#entry33">Dag 33: Singapore</a>
+          <a href="#entry34">Dag 34: Singapore</a>
+          <a href="#entry35">Dag 35: Singapore</a>
+        </div>
+        <!-- End div id="localNav" -->
+
+        <div id="content">
+          <!-- Content -->
+          <!-- Innehållet fylls med hjälp av JavaScript -->
+        </div>
+        <!-- End div id="content"-->
+
+        <div id="rightCol">
+          <!-- Right column -->
+          <div>
+            <img src="christian_mini.jpg" alt="Christians dagbok" />
+            <h3>Christian Söderberg</h3>
+            Reseålder: 10 år
+          </div>
+          <div>
+            <h4><a href="ann.html">Anns dagbok</a></h4>
+          </div>
+          <div>
+            <h4><a href="fredrik.html">Fredriks dagbok</a></h4>
+          </div>
+        </div>
+        <!-- End div id="rightCol"-->
+      </div>
+      <!-- End div id="main"-->
+
+      <div id="footer">
+        <!-- Footer -->
+        <p>Utvecklad av Christian Söderberg | <span style="color: #a00a0a">Senast uppdaterad: Juni 2012</span></p>
+        <div id="kiwiDiv">
+          <img src="../footer/kiwi.png" alt="Kiwi" id="kiwi" />
+        </div>
+      </div>
+      <!-- End id="footer" -->
     </div>
-    <div>
-    	<h4><a href="ann.html">Anns dagbok</a></h4>
-    </div>
-    <div>
-    	<h4><a href="fredrik.html">Fredriks dagbok</a></h4>
-    </div>
-  </div> <!-- End div id="rightCol"-->
-  
- </div> <!-- End div id="main"-->
-
- <div id="footer"> <!-- Footer -->
-   <p>Utvecklad av Christian Söderberg | <span style="color:#A00A0A">Senast uppdaterad: Juni 2012</span></p>
-   <div id="kiwiDiv">
-    	<img src="../footer/kiwi.png" alt="Kiwi" id="kiwi" />
-   </div>
- </div> <!-- End id="footer" -->
-	
-</div> <!-- End id="wrapper" -->
-    
-</body>
+    <!-- End id="wrapper" -->
+  </body>
 </html>
