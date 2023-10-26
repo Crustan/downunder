@@ -10,7 +10,7 @@ function showSlideshow(day, amount) {
   pic_amount = amount; // ... antal bilder för dagen skickas med som parameter
   the_day = day;
   ss_picture = document.getElementById("ssPicture");
-  ss_picture.src = "album/day" + the_day + "/day" + the_day + "_0.jpg"; // Bildtaggens url sätts till dagens första bild
+  ss_picture.src = "../src/db/photos/day" + the_day + "/day" + the_day + "_0.jpg"; // Bildtaggens url sätts till dagens första bild
 
   document.getElementById("fullScrSlideshowDim").style.visibility = "visible"; // Den dimmade bakgrunden visas
   document.body.style.overflow = "hidden"; // Scrollfunktionen avaktiveras
@@ -54,9 +54,9 @@ function showPrevPict() {
   clearTimeout(the_timeout);
   if (day_pic_nr != 0)
     // Så länge inte första bilden visas
-    ss_picture.src = "album/day" + the_day + "/day" + the_day + "_" + Number(day_pic_nr - 1) + ".jpg";
+    ss_picture.src = "../src/db/photos/day" + the_day + "/day" + the_day + "_" + Number(day_pic_nr - 1) + ".jpg";
   // Ändra sökvägen till föregående bild
-  else ss_picture.src = "album/day" + the_day + "/day" + the_day + "_" + Number(pic_amount - 1) + ".jpg"; // Annars, visa sista bilden
+  else ss_picture.src = "../src/db/photos/day" + the_day + "/day" + the_day + "_" + Number(pic_amount - 1) + ".jpg"; // Annars, visa sista bilden
   the_timeout = setTimeout("placePict()", 10);
 }
 function showNextPict() {
@@ -68,11 +68,11 @@ function showNextPict() {
   clearTimeout(the_timeout);
   if (day_pic_nr != pic_amount - 1) {
     // Så länge inte sista bilden visas
-    ss_picture.src = "album/day" + the_day + "/day" + the_day + "_" + (Number(day_pic_nr) + 1) + ".jpg"; // Ändra sökvägen till nästa bild
+    ss_picture.src = "../src/db/photos/day" + the_day + "/day" + the_day + "_" + (Number(day_pic_nr) + 1) + ".jpg"; // Ändra sökvägen till nästa bild
   } else {
     // Annars visas första bilden igen
     day_pic_nr = 0;
-    ss_picture.src = "album/day" + the_day + "/day" + the_day + "_" + Number(day_pic_nr) + ".jpg";
+    ss_picture.src = "../src/db/photos/day" + the_day + "/day" + the_day + "_" + Number(day_pic_nr) + ".jpg";
   }
   the_timeout = setTimeout("placePict()", 10);
 }
