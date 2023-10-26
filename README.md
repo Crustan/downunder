@@ -38,3 +38,23 @@ A git commit message should start with a category of change. Pick one of these: 
 ```sh
 git commit -m '<category: do something; do some other things>'
 ```
+
+## Code quality
+
+To achieve good code quality, recommended best-practice linting and formatting rules should be followed.
+
+To lint the code, install the ESLint plugin for VS Code or, from the root, run:
+
+```sh
+npx eslint .
+```
+
+To format the code, install the Prettier plugin for VS Code, and enable the _Format on save_ setting, or, from the root, run:
+
+```sh
+npx prettier . --write
+```
+
+### Git hooks
+
+To avoid commits where those commands have been missed, a Git `pre-commit` hook has been added.
