@@ -54,14 +54,8 @@ function showPrevPict() {
   clearTimeout(the_timeout);
   if (day_pic_nr != 0)
     // Så länge inte första bilden visas
-    ss_picture.src =
-      "album/day" +
-      the_day +
-      "/day" +
-      the_day +
-      "_" +
-      Number(day_pic_nr - 1) +
-      ".jpg"; // Ändra sökvägen till föregående bild
+    ss_picture.src = "album/day" + the_day + "/day" + the_day + "_" + Number(day_pic_nr - 1) + ".jpg";
+  // Ändra sökvägen till föregående bild
   else ss_picture.src = "album/day" + the_day + "/day" + the_day + "_" + Number(pic_amount - 1) + ".jpg"; // Annars, visa sista bilden
   the_timeout = setTimeout("placePict()", 10);
 }
