@@ -57,4 +57,32 @@ npx prettier . --write
 
 ### Git hooks
 
-To avoid commits where those commands have been missed, a Git `pre-commit` hook has been added.
+To avoid commits where those commands have been missed, a Git `pre-commit` hook file should be added in your local `.git/hooks`.
+
+```sh
+#!/bin/sh
+FILES=$(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g')
+[ -z "$FILES" ] && exit 0
+
+# Fix lint errors on  all selected files
+echo "$FILES" | xargs npx eslint --fix --ext .js,.jsx,.ts,.tsx
+
+if [ $? -ne 0 ]; then
+  echo "ESLint failed on staged files. Please check your code and try again. You can run ESLint manually via npx eslint"
+  exit 1 # exit with failure status
+fi
+
+# Prettify all selected files
+echo "$FILES" | xargs npx prettier --ignore-unknown --write
+
+# Add back the modified/prettified files to staging
+echo "$FILES" | xargs git add
+
+exit 0
+```
+
+When the file is created, make it executable by running:
+
+```sh
+chmod +x .git/hooks/pre-commit
+```
