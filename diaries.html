@@ -1,607 +1,682 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Söderberg Down Under | Resedagböcker</title>
+    <link rel="stylesheet" type="text/css" href="style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="diaries/diaries.css" media="all" />
+    <link href="http://fonts.googleapis.com/css?family=Bree+Serif|Fugaz+One|Brawler" rel="stylesheet" type="text/css" />
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
-  <title>Söderberg Down Under | Resedagböcker</title>
-  <link rel="stylesheet" type="text/css" href="style.css" media="all" />
-  <link rel="stylesheet" type="text/css" href="diaries/diaries.css" media="all" />
-  <link href='http://fonts.googleapis.com/css?family=Bree+Serif|Fugaz+One|Brawler' rel='stylesheet' type='text/css'>	
-  
-  <script type="text/javascript" language="javascript">
-  	<!-- hide me from older browsers
-	var img_array = new Array();												// Array skapas för bilder i bildspelet
-	var entries = new Array();													// Array skapas för dagboksinläggen
-	var ssPict;																	// Referens till bildtaggen för bildspelet
-	var the_day = 0;															// Global variabel för vilken dag på resan som visas
-	var num_of_pics = 0;														// Global variabel för antal bilder i bildspel på varje sida
-	
-	function initPage() {	
-		if (the_day == 0){														// Visa startsidan för dagböcker när day = 0
-			document.getElementById("slideshow").style.display = "none";		// Dölj 
-			document.getElementById("prevNextUp").style.display = "none";
-			document.getElementById("prevNextDown").style.display = "none";
-			document.getElementById("diaries").style.display = "none";
-			document.getElementById("rightCol").style.display = "none";
-			document.getElementById("intro").style.display = "block";
-			document.getElementById("content").style.minWidth = "700px";
-		}
-		else {
-			document.getElementById("slideshow").style.display = "block";
-			document.getElementById("prevNextUp").style.display = "block";
-			document.getElementById("prevNextDown").style.display = "block";
-			document.getElementById("diaries").style.display = "block";
-			document.getElementById("rightCol").style.display = "block";
-			document.getElementById("intro").style.display = "none";
-			document.getElementById("content").style.minWidth = "550px";
-		}
-		if (the_day == 1 || the_day == 2)										// Foton saknas från dag 1 och 2
-			document.getElementById("slideshow").style.display = "none";
-		
-		if (the_day == 1)   													// Om dag 1 visas, inaktivera "Föregående dag"
-			for (var i=1;i<=2;i++) {											
-				document.getElementById("prev"+i).style.color = "#CCCCCC";		
-				document.getElementById("prev"+i).style.pointerEvents = "none";
-				document.getElementById("next"+i).style.color = "";				// Om man går direkt från sista sidan ska next aktiveras
-				document.getElementById("next"+i).style.pointerEvents = "";				
-			}
-		else if (the_day == 35) 												// Om dag 35 (sista dagen) visas, inaktivera "Nästa dag"
-			for (var i=1;i<=2;i++) {											
-				document.getElementById("prev"+i).style.color = "";				// Om man går direkt från första sidan ska prev aktiveras
-				document.getElementById("prev"+i).style.pointerEvents = "";
-				document.getElementById("next"+i).style.color = "#CCCCCC";
-				document.getElementById("next"+i).style.pointerEvents = "none";
-			}
-		else																	// Alla andra dagar ska båda länkarna vara klickbara
-			for (var i=1;i<=2;i++) {
-				document.getElementById("prev"+i).style.color = "";
-				document.getElementById("prev"+i).style.pointerEvents = "";											
-				document.getElementById("next"+i).style.color = "";
-				document.getElementById("next"+i).style.pointerEvents = "";
-			}	
-		ssPict = document.getElementById("ssPic");
-		
-	}	
-	
-	function changeDay(day,pic_amount) {
-		var nav_array = document.getElementById("localNav").getElementsByTagName("a");
+    <script type="text/javascript" language="javascript">
+      <!-- hide me from older browsers
+      var img_array = new Array(); // Array skapas för bilder i bildspelet
+      var entries = new Array(); // Array skapas för dagboksinläggen
+      var ssPict; // Referens till bildtaggen för bildspelet
+      var the_day = 0; // Global variabel för vilken dag på resan som visas
+      var num_of_pics = 0; // Global variabel för antal bilder i bildspel på varje sida
 
-		if (day == "next") {													// Om nästa dag anropas...
-			the_day = the_day + 1;
-			nav_array[the_day-1].click();										//... klicka på navigeringslänken för nästa dag, 
-		}																		// för att få med antal bilder (pic_amount)
-		else if (day == "prev")	{												// Om föregående dag anropas...
-			the_day = the_day - 1;
-			nav_array[the_day-1].click();										//... klicka på navigeringslänken för föregående dag, 
-		}																		// för att få med antal bilder (pic_amount)
-		else {																	// Om valfri dag väljs i lokal navigering...
-			the_day = day;
-			writeDay();															// Ladda om XML och hämta ut rätt dags texter
-			initPage();															// Initera sidan
-			initSlideShow(the_day, pic_amount);									// Initiera bildspelet med aktuell dag och rätt antal bilder
-			markDay(the_day);													// ...Global variabel the_day tilldelas nytt värde
-		}
-		for (var i=1;i<36;i++) {												// Visa rätt Mer Info-ruta
-			if (i == the_day)
-				document.getElementById("info"+i).style.display = "block";
-			else
-				document.getElementById("info"+i).style.display = "none";	
-		}
+      function initPage() {
+        if (the_day == 0) {
+          // Visa startsidan för dagböcker när day = 0
+          document.getElementById("slideshow").style.display = "none"; // Dölj
+          document.getElementById("prevNextUp").style.display = "none";
+          document.getElementById("prevNextDown").style.display = "none";
+          document.getElementById("diaries").style.display = "none";
+          document.getElementById("rightCol").style.display = "none";
+          document.getElementById("intro").style.display = "block";
+          document.getElementById("content").style.minWidth = "700px";
+        } else {
+          document.getElementById("slideshow").style.display = "block";
+          document.getElementById("prevNextUp").style.display = "block";
+          document.getElementById("prevNextDown").style.display = "block";
+          document.getElementById("diaries").style.display = "block";
+          document.getElementById("rightCol").style.display = "block";
+          document.getElementById("intro").style.display = "none";
+          document.getElementById("content").style.minWidth = "550px";
+        }
+        if (the_day == 1 || the_day == 2)
+          // Foton saknas från dag 1 och 2
+          document.getElementById("slideshow").style.display = "none";
 
-	}
-	
-	function markDay(day) {														// Markera den dag som visas i lokal navigering
-		links = document.getElementById("localNav").getElementsByTagName("a");
-		
-		for (var i=0; i<links.length; i++) {
-			if (i+1 == day)
-				links[i].style.background = "#9FD781";
-			else 
-				links[i].style.background = "#F7F8E1";
-		}
-	}
-	
-	function initSlideShow(day,pic_amount) {												// Initiera bildspelet med dagens första foto
-		ssPict.src = "photos/album/day" +day+ "/day" +day+ "_0.jpg";
-		num_of_pics = pic_amount;
-	}
-	
-	function showPrevPict() {																// Visa nästa foto i dagens bildspel
-		var img_url = ssPict.src;															// Hela bildadressen
-		var file_name = img_url.substring(img_url.lastIndexOf("/") + 1);					// Filnamnet
-		var last_nr_pos = file_name.lastIndexOf("_") + Number(1);							// Plats för sista understrecket
-		var day_pic_nr = file_name.substring(last_nr_pos, file_name.lastIndexOf("."));		// Sorteringsnummer för bild på aktuell dag
-		var f_name = file_name.substring(file_name,last_nr_pos);							// Filnamnet minus sista siffran och filändelse (också mappnamn)
-		
-		if (day_pic_nr != 0)																// Så länge inte första bilden visas 
-			ssPict.src = "photos/album/day" +the_day+ "/" +f_name+ (Number(day_pic_nr) - 1) + ".jpg";	// Ändra sökvägen till föregående bild
-		else
-			ssPict.src = "photos/album/day" +the_day+ "/" +f_name+ (Number(num_of_pics) - 1) + ".jpg";
-	}
-	function showNextPict() {																// Visa nästa bild i dagens bildspel
-			var img_url = ssPict.src;														// Hela bildadressen
-			var file_name = img_url.substring(img_url.lastIndexOf("/") + 1);				// Filnamnet
-			var last_nr_pos = file_name.lastIndexOf("_") + Number(1);						// Plats för sista understrecket
-			var day_pic_nr = file_name.substring(last_nr_pos, file_name.lastIndexOf("."));	// Sorteringsnummer för bild på aktuell dag
-			var f_name = file_name.substring(file_name,last_nr_pos);						// Filnamnet minus sista siffran och filändelse (också mappnamn)
-		
-		if (day_pic_nr != num_of_pics-1) {													// Så länge inte sista bilden visas
-			ssPict.src = "photos/album/day" +the_day+ "/" +f_name+ (Number(day_pic_nr) + 1) + ".jpg";		// Ändra sökvägen till nästa bild
-		}
-		else {																				// Annars visas första bilden igen
-			day_pic_nr = 0;
-			ssPict.src = "photos/album/day" +the_day+ "/" +f_name+ (Number(day_pic_nr)) + ".jpg";
-		}
-	}
-	
-	function loadXMLDoc(url){													// Funktion för att ladda in XML-dokumentet med dagböcker
-		var xmlhttp = null;														// Nollställ
-		
-		if (window.XMLHttpRequest) {											// Kod för IE7+, Firefox, Chrome, Opera, Safari
-		  	xmlhttp = new XMLHttpRequest();
-		}
-		else {																	// Kod för IE6, IE5
-		  	xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.open("GET",url,false);
-		xmlhttp.send();
-		
-		return xml_document = xmlhttp.responseXML;								// Referens till XML-dokumentet				 
-	}
-	
-	function writeDay() {
-		var xml_document = loadXMLDoc("diaries/diaries.xml");
-		var entries = xml_document.getElementsByTagName("entry");				// Skapa en array med alla inlägg
-		
-		var date_entries = new Array;											// Skapa en array med endast dagens inlägg
-		var HTML_diaries = "";													// Tom sträng initieras för den HTML som ska visas i <div id="diaries">
-		var HTML_entries = "";													// Tom sträng för HTML som ska visas som dagboksinlägg
-		var HTML_content_header = ""; 											// Tom sträng för HTML som ska visas som rubrik i <div id="diaries">
-		
-		for (var i=0;i<entries.length;i++) {									// Kolla upp datumet för varje dagboksinlägg
-			var entry_day = entries[i].getElementsByTagName("day")[0].childNodes[0].nodeValue;
+        if (the_day == 1)
+          // Om dag 1 visas, inaktivera "Föregående dag"
+          for (var i = 1; i <= 2; i++) {
+            document.getElementById("prev" + i).style.color = "#CCCCCC";
+            document.getElementById("prev" + i).style.pointerEvents = "none";
+            document.getElementById("next" + i).style.color = ""; // Om man går direkt från sista sidan ska next aktiveras
+            document.getElementById("next" + i).style.pointerEvents = "";
+          }
+        else if (the_day == 35)
+          // Om dag 35 (sista dagen) visas, inaktivera "Nästa dag"
+          for (var i = 1; i <= 2; i++) {
+            document.getElementById("prev" + i).style.color = ""; // Om man går direkt från första sidan ska prev aktiveras
+            document.getElementById("prev" + i).style.pointerEvents = "";
+            document.getElementById("next" + i).style.color = "#CCCCCC";
+            document.getElementById("next" + i).style.pointerEvents = "none";
+          }
+        // Alla andra dagar ska båda länkarna vara klickbara
+        else
+          for (var i = 1; i <= 2; i++) {
+            document.getElementById("prev" + i).style.color = "";
+            document.getElementById("prev" + i).style.pointerEvents = "";
+            document.getElementById("next" + i).style.color = "";
+            document.getElementById("next" + i).style.pointerEvents = "";
+          }
+        ssPict = document.getElementById("ssPic");
+      }
 
-			if (entry_day == the_day) 											// Om inläggsdag är samma som sidans dag (the_day)...				
-			 	date_entries.push(entries[i]);									// ...lägg till dagens inlägg i egen array...
-		}									
-		for (i=0;i<date_entries.length;i++) {									// ... och ta fram all info från varje inlägg
-				var HTML_entry = "";											// Tom sträng initieras för den HTML som innehåller ETT inlägg 
-				var author = date_entries[i].getElementsByTagName("author")[0].childNodes[0].nodeValue;	
-				var age = date_entries[i].getElementsByTagName("author")[0].attributes.getNamedItem("age").nodeValue;
-				var date = date_entries[i].getElementsByTagName("date")[0].childNodes[0].nodeValue;
-				var day = date_entries[i].getElementsByTagName("day")[0].childNodes[0].nodeValue;
-				var place = "";													// Tom sträng initieras för place											
-				var cities = date_entries[i].getElementsByTagName("city");
-				var country = date_entries[i].getElementsByTagName("country")[0].childNodes[0].nodeValue;
-				var text = date_entries[i].getElementsByTagName("text")[0].childNodes[0].nodeValue;
-				//short_date = date_entries[i].getElementsByTagName("date")[0].attributes.getNamedItem("short").nodeValue;
-				
-				text = checkTextForLineBreaks(text);									// Kolla om radbrytningar finns, isf behåll dessa
-				
-																				
-				for (var loop=0;loop<cities.length;loop++) {							// Skapa en sträng med staden/städerna
-					city = cities[loop].childNodes[0].nodeValue;
-					if (place == "")													// Om strängen är tom, lägg till stad
-						place = city;
-					else																// Annars lägg till komma-tecken och nästa stad
-						place = place+ ", " +city;										
-				}
-				if(cities.length < 3)
-					if (city != "Singapore")
-						place = place + " (" +country+ ")";								// Lägg till landet sist i strängen
-				
-				HTML_entry ="<span class='author'>" +author+ ", " +age+ " år</span>" +	// Skapa HTML-kod för inlägget
-							"<p>" +text+ "</p>";
-				if (i < date_entries.length-1)											// Om det finns fler inlägg för dagen, lägg till en avdelare	 
-					HTML_entry = HTML_entry + "<div class='splitter'>•  •  •</div>";
-				
-				HTML_entries = HTML_entries + HTML_entry;								// Lägg till HTML-koden sist i HTML-kod för alla dagens inlägg
-		}
-																						// Skapa HTML-kod för sidans rubriker
-		HTML_content_header = "<h2>" +date+ "<span class='day'>Dag " +day+ "</span></h2>" +
-				"<h3>" +place+ "</h3>";
-		HTML_diaries = HTML_content_header + HTML_entries;			
-		document.getElementById("diaries").innerHTML = HTML_diaries;					// Skriv ut HTML-kod i div-taggen diaries
-		document.title = "Söderberg Down Under | Resedagböcker | "+date;				// Ändra fönstertitel
-	}
-	
-	function writePerson(name) {
-		var xml_document = loadXMLDoc("diaries/diaries.xml");
-		var entries = xml_document.getElementsByTagName("entry");				// Skapa en array med alla inlägg
-		var author_entries = new Array;											// Skapa en array med för endast författarens inlägg
-		var HTML_diaries = "";													// Tom sträng initieras för den HTML som ska visas i <div id="diaries">
-		var HTML_entries = "";													// Tom sträng för HTML som ska visas som dagboksinlägg
-		var HTML_content_header = ""; 											// Tom sträng för HTML som ska visas som rubrik i i <div id="diaries">
-		
-		document.getElementById("diaries").style.display = "block";						// Visa/dölj rätt div-taggar
-		document.getElementById("rightCol").style.visibility = "visible";
-		document.getElementById("intro").style.display = "none";
-		document.getElementById("slideshow").style.display = "none";
-		
-		for (var i=0;i<entries.length;i++) {									// Kolla upp författaren för varje dagboksinlägg
-			var author = entries[i].getElementsByTagName("author")[0].childNodes[0].nodeValue;
+      function changeDay(day, pic_amount) {
+        var nav_array = document.getElementById("localNav").getElementsByTagName("a");
 
-			if (author == name) 												// Om författare är samma som vald författare (name)...				
-			 	author_entries.push(entries[i]);								// ...lägg till författarens inlägg i egen array...
-		}
-		
-		for (i=0;i<author_entries.length;i++) {									// ... och ta fram all info från varje inlägg
-				var HTML_entry = "";											// Tom sträng initieras för den HTML som innehåller ETT inlägg 
-				var author = author_entries[i].getElementsByTagName("author")[0].childNodes[0].nodeValue;	
-				var age = author_entries[i].getElementsByTagName("author")[0].attributes.getNamedItem("age").nodeValue;
-				var date = author_entries[i].getElementsByTagName("date")[0].childNodes[0].nodeValue;
-				var day = author_entries[i].getElementsByTagName("day")[0].childNodes[0].nodeValue;
-				var place = "";													// Tom sträng initieras för place											
-				var cities = author_entries[i].getElementsByTagName("city");
-				var country = author_entries[i].getElementsByTagName("country")[0].childNodes[0].nodeValue;
-				var text = author_entries[i].getElementsByTagName("text")[0].childNodes[0].nodeValue;
-				//short_date = author_entries[i].getElementsByTagName("date")[0].attributes.getNamedItem("short").nodeValue;
-				
-				text = checkTextForLineBreaks(text);									// Kolla om radbrytningar finns, isf behåll dessa
-																	
-				for (var loop=0;loop<cities.length;loop++) {							// Skapa en sträng med staden/städerna
-					city = cities[loop].childNodes[0].nodeValue;
-					if (place == "")													// Om strängen är tom, lägg till stad
-						place = city;
-					else																// Annars lägg till komma-tecken och nästa stad
-						place = place+ ", " +city;										
-				}
-				if(cities.length < 3)
-					place = place + " (" +country+ ")";									// Lägg till landet sist i strängen
-				
-				HTML_entry ="<div id='" +name+day+ "'><h4>" +date+ 						// Skapa HTML-kod för inlägget
-					"<span class='place'>" +place+ "</h4>" + "<p>" +text+ "</p></div>";		
-				if (i < author_entries.length-1)										// Om det finns fler inlägg för dagen, lägg till en avdelare	 
-					HTML_entry = HTML_entry + "<div class='splitter'>•  •  •</div>";
-				
-				HTML_entries = HTML_entries + HTML_entry;								// Lägg till HTML-koden sist i HTML-kod för alla dagens inlägg
-		}
-		HTML_content_header = "<h2>" +name+ "s resedagbok</h2>";
-		HTML_diaries = HTML_content_header + HTML_entries;			
-		document.getElementById("diaries").innerHTML = HTML_diaries;					// Skriv ut HTML-kod i div-taggen diaries
-	}
-	
-	function checkTextForLineBreaks(text) {												// Leta igenom text efter radbrytningar (\n) och 
-		var new_text = ""; 																// ersätt dessa med <br /> för HTML
-		var pos1 = 0; 
-		var pos2 = 0;
-		do {
-			pos2 = text.indexOf("\n",pos1);
-			if (pos2 > -1) 
-				new_text = new_text + text.substring(pos1,pos2) + "<br />";
-			else 
-				new_text = new_text + text.substring(pos1);
-			pos1 = pos2+1;
-		} while (pos2 > -1);	
-		
-		return new_text;
-	}
-	
-	function chkKiwi() { 												// Om fönstret är för litet så visas inte kiwifågel
-		if (window.innerWidth < 1080)											// längst ner i höger hörn
-			document.getElementById("kiwi").style.visibility = "hidden";
-		else
-			document.getElementById("kiwi").style.visibility = "visible";
-	}
-	// show me -->
-  </script>
-</head>
+        if (day == "next") {
+          // Om nästa dag anropas...
+          the_day = the_day + 1;
+          nav_array[the_day - 1].click(); //... klicka på navigeringslänken för nästa dag,
+        } // för att få med antal bilder (pic_amount)
+        else if (day == "prev") {
+          // Om föregående dag anropas...
+          the_day = the_day - 1;
+          nav_array[the_day - 1].click(); //... klicka på navigeringslänken för föregående dag,
+        } // för att få med antal bilder (pic_amount)
+        else {
+          // Om valfri dag väljs i lokal navigering...
+          the_day = day;
+          writeDay(); // Ladda om XML och hämta ut rätt dags texter
+          initPage(); // Initera sidan
+          initSlideShow(the_day, pic_amount); // Initiera bildspelet med aktuell dag och rätt antal bilder
+          markDay(the_day); // ...Global variabel the_day tilldelas nytt värde
+        }
+        for (var i = 1; i < 36; i++) {
+          // Visa rätt Mer Info-ruta
+          if (i == the_day) document.getElementById("info" + i).style.display = "block";
+          else document.getElementById("info" + i).style.display = "none";
+        }
+      }
 
-<body onload="initPage(); chkKiwi();" onresize="chkKiwi()">
+      function markDay(day) {
+        // Markera den dag som visas i lokal navigering
+        links = document.getElementById("localNav").getElementsByTagName("a");
 
-<div id="wrapper"> <!-- Page Wrapper -->
- 
- <div id="headerNav"> <!-- Header and navigation -->
-  <div id="header"> <!-- Page Header -->
-    <img src="pics/map.png" id="pic0" alt="Oceanien" />
-    <img src="pics/headerqoute.png" id="pic1" alt="Skippa charter och få en upplevelse för livet!" />
-    <h2>SÖDERBERG</h2>
-    <h1>DOWN UNDER</h1>
-  </div> <!-- End div id="header"-->
+        for (var i = 0; i < links.length; i++) {
+          if (i + 1 == day) links[i].style.background = "#9FD781";
+          else links[i].style.background = "#F7F8E1";
+        }
+      }
 
-  <div id="navigation"> <!-- Global navigation -->  
-    <a href="index.html">START</a>
-    <a href="diaries.html" class="thisPage">RESEDAGBÖCKER</a>
-    <a href="photos.html">FOTOALBUM</a>
-    <a href="destinations.html">DESTINATIONER</a>
-  </div> <!-- End div id="navigation"-->
- </div>	<!-- End div id="headerNav"-->
+      function initSlideShow(day, pic_amount) {
+        // Initiera bildspelet med dagens första foto
+        ssPict.src = "photos/album/day" + day + "/day" + day + "_0.jpg";
+        num_of_pics = pic_amount;
+      }
 
- <div id="main"> <!-- Main content section -->
+      function showPrevPict() {
+        // Visa nästa foto i dagens bildspel
+        var img_url = ssPict.src; // Hela bildadressen
+        var file_name = img_url.substring(img_url.lastIndexOf("/") + 1); // Filnamnet
+        var last_nr_pos = file_name.lastIndexOf("_") + Number(1); // Plats för sista understrecket
+        var day_pic_nr = file_name.substring(last_nr_pos, file_name.lastIndexOf(".")); // Sorteringsnummer för bild på aktuell dag
+        var f_name = file_name.substring(file_name, last_nr_pos); // Filnamnet minus sista siffran och filändelse (också mappnamn)
 
-  <div id="localNav"> <!-- Local navigation -->
-  	<h4>Resedagböcker</h4>
-    <a href="#" onclick="changeDay(1,0); return false;">Dag 1: Flyg till Singapore</a>
-    <a href="#" onclick="changeDay(2,0); return false;">Dag 2: Singapore</a>
-    <a href="#" onclick="changeDay(3,7); return false;">Dag 3: Auckland</a>
-    <a href="#" onclick="changeDay(4,14); return false;">Dag 4: Waitomo Caves</a>
-    <a href="#" onclick="changeDay(5,24); return false;">Dag 5: Rotorua</a>
-    <a href="#" onclick="changeDay(6,19); return false;">Dag 6: Napier</a>
-    <a href="#" onclick="changeDay(7,16); return false;">Dag 7: Masterton</a>
-    <a href="#" onclick="changeDay(8,33); return false;">Dag 8: Greymouth</a>
-    <a href="#" onclick="changeDay(9,23); return false;">Dag 9: Haast</a>
-    <a href="#" onclick="changeDay(10,9); return false;">Dag 10: Wanaka</a>
-    <a href="#" onclick="changeDay(11,7); return false;">Dag 11: Queenstown</a>
-    <a href="#" onclick="changeDay(12,15); return false;">Dag 12: Queenstown</a>
-   	<a href="#" onclick="changeDay(13,8); return false;">Dag 13: Dunedin</a>
-    <a href="#" onclick="changeDay(14,20); return false;">Dag 14: Dunedin</a>
-    <a href="#" onclick="changeDay(15,12); return false;">Dag 15: Dunedin</a>
-    <a href="#" onclick="changeDay(16,2); return false;">Dag 16: Christchurch</a>
-    <a href="#" onclick="changeDay(17,7); return false;">Dag 17: Brisbane</a>
-    <a href="#" onclick="changeDay(18,2); return false;">Dag 18: Brisbane</a>
-    <a href="#" onclick="changeDay(19,12); return false;">Dag 19: Brisbane</a>
-    <a href="#" onclick="changeDay(20,7); return false;">Dag 20: Brisbane</a>
-    <a href="#" onclick="changeDay(21,12); return false;">Dag 21: Brisbane</a>
-    <a href="#" onclick="changeDay(22,3); return false;">Dag 22: Brisbane</a>
-    <a href="#" onclick="changeDay(23,4); return false;">Dag 23: Tangalooma</a>
-    <a href="#" onclick="changeDay(24,4); return false;">Dag 24: Surfers Paradise</a>
-    <a href="#" onclick="changeDay(25,13); return false;">Dag 25: Surfers Paradise</a>
-    <a href="#" onclick="changeDay(26,16); return false;">Dag 26: Yamba</a>
-    <a href="#" onclick="changeDay(27,3); return false;">Dag 27: Port Macquarie</a>
-    <a href="#" onclick="changeDay(28,9); return false;">Dag 28: Belmont</a>
-    <a href="#" onclick="changeDay(29,4); return false;">Dag 29: Sydney</a>
-    <a href="#" onclick="changeDay(30,10); return false;">Dag 30: Sydney</a>
-    <a href="#" onclick="changeDay(31,3); return false;">Dag 31: Singapore</a>
-    <a href="#" onclick="changeDay(32,10); return false;">Dag 32: Singapore</a>
-    <a href="#" onclick="changeDay(33,5); return false;">Dag 33: Singapore</a>
-    <a href="#" onclick="changeDay(34,3); return false;">Dag 34: Singapore</a>
-    <a href="#" onclick="changeDay(35,6); return false;">Dag 35: Singapore</a>
-  </div><!-- End div id="localNav" -->
+        if (day_pic_nr != 0)
+          // Så länge inte första bilden visas
+          ssPict.src =
+            "photos/album/day" +
+            the_day +
+            "/" +
+            f_name +
+            (Number(day_pic_nr) - 1) +
+            ".jpg"; // Ändra sökvägen till föregående bild
+        else ssPict.src = "photos/album/day" + the_day + "/" + f_name + (Number(num_of_pics) - 1) + ".jpg";
+      }
+      function showNextPict() {
+        // Visa nästa bild i dagens bildspel
+        var img_url = ssPict.src; // Hela bildadressen
+        var file_name = img_url.substring(img_url.lastIndexOf("/") + 1); // Filnamnet
+        var last_nr_pos = file_name.lastIndexOf("_") + Number(1); // Plats för sista understrecket
+        var day_pic_nr = file_name.substring(last_nr_pos, file_name.lastIndexOf(".")); // Sorteringsnummer för bild på aktuell dag
+        var f_name = file_name.substring(file_name, last_nr_pos); // Filnamnet minus sista siffran och filändelse (också mappnamn)
 
-  <div id="content"> <!-- Content -->
-    <div id="prevNextUp" class="prevNext" style="border-bottom:1px dotted #A00A0A;">
-        <a href="#" onclick="changeDay('prev',0); return false;" id="prev1">‹‹ Föregående dag</a>
-        <a href="#" onclick="changeDay('next',0); return false;" id="next1" class="alignRight">Nästa dag ››</a>
-    </div> <!-- End div id="prevNextUp"-->
-    
-    <div id="intro"> <!-- Den här delen visas som förstasida för fliken Resedagböcker -->
-    	<h2>Resedagböcker</h2>
-        <p>Under resans gång hade sönerna Christian och Fredrik i uppgift från skolan att skriva lite om varje dags händelser. Mamma Ann hakade på och till slut kom vi hem med tre fullskrivna dagböcker. Här kan du välja att läsa alla tre dag för dag, eller välja en enskild person och läsa dennes berättelse rakt igenom. Låt dig inspireras av dessa personliga skildringar av resan!</p>
-    	<a href="#" onclick="changeDay(1,0); return false;"><img src="diaries/all.jpg" alt="Läs allas dagböcker från start till mål" /></a><br /> <!-- Öppna samlad dag 1-->
-        <a href="diaries/ann.html"><img src="diaries/ann.jpg" alt="Läs Anns dagbok" /></a> 							<!-- Öppna bara Anns dagbok -->
-        <a href="diaries/christian.html"><img src="diaries/christian.jpg" alt="Läs Christians dagbok" /></a> 			<!-- Öppna bara Christians dagbok-->
-        <a href="diaries/fredrik.html"><img src="diaries/fredrik.jpg" alt="Läs Fredriks dagbok" /></a>					<!-- Öppna bara Fredriks dagbok-->
-    </div>
-    
-    <div id="slideshow">
-      <img src="pics/ss/prev.gif" id="ssNavL" alt="Previous pic" onclick="showPrevPict()" />
-    	<img src="photos/album/day1/day1_0.jpg" id="ssPic" alt="Bildspel" height="338px"/>
-      <img src="pics/ss/next.gif" id="ssNavR" alt="Next pic" onclick="showNextPict()" />
-    </div>       
-   	
-    <div id="diaries">
-   		<!-- I den här taggen hamnar det dynamiska dagboksinnehållet -->
-	</div> <!-- End div id="diaries"-->
+        if (day_pic_nr != num_of_pics - 1) {
+          // Så länge inte sista bilden visas
+          ssPict.src = "photos/album/day" + the_day + "/" + f_name + (Number(day_pic_nr) + 1) + ".jpg"; // Ändra sökvägen till nästa bild
+        } else {
+          // Annars visas första bilden igen
+          day_pic_nr = 0;
+          ssPict.src = "photos/album/day" + the_day + "/" + f_name + Number(day_pic_nr) + ".jpg";
+        }
+      }
 
-    <div id="prevNextDown" class="prevNext" style="border-top:1px dotted #A00A0A;">
-        <a href="#" onclick="changeDay('prev',0); return false;" id="prev2">‹‹ Föregående dag</a>
-        <a href="#" onclick="changeDay('next',0); return false;" id="next2" class="alignRight">Nästa dag ››</a>
-    </div> <!-- End div id="prevNextDown"-->
-        
-  </div> <!-- End div id="content"-->
+      function loadXMLDoc(url) {
+        // Funktion för att ladda in XML-dokumentet med dagböcker
+        var xmlhttp = null; // Nollställ
 
-  <div id="rightCol" > <!-- Right column -->
-    <div id="info1">
-    	<h3>Mer info</h3>
-    	<a href="http://www.singaporeair.com/">Singapore Airlines ››</a>
-    </div>
-    <div id="info2">
-    	<h3>Mer info</h3>
-        <a href="http://www.yoursingapore.com/content/traveller/en/experience.html">Your Singapore ››</a>
-        <a href="http://sv.wikipedia.org/wiki/Singapore">Singapore Wikipedia ››</a>
-    	<a href="http://www.rendezvoushotels.com/singapore/">Rendezvous Singapore ››</a>
-        <a href="http://en.wikipedia.org/wiki/Jurong_Reptile_Park">Jurong Reptile Park ››</a>
-    </div>
-    <div id="info3">
-    	<h3>Mer info</h3>
-    	<a href="http://www.aucklandnz.com/">Auckland ››</a>
-        <a href="http://sv.wikipedia.org/wiki/Auckland">Auckland Wikipedia ››</a>
-        <a href="http://www.auckland.se/">Auckland.se ››</a>
-        <a href="http://www.skycityauckland.co.nz/Attractions/Skytower.html">Sky Tower ››</a>
-        
-    </div>
-    <div id="info4">
-    	<h3>Mer info</h3>
-    	<a href="http://www.waitomo.com/waitomo-glowworm-caves.aspx">Waitomo Caves ››</a>
-        <a href="http://www.kiwihouse.org.nz/">Otorohanga Kiwi House ››</a>
-        <a href="http://www.rotoruanz.com/">Rotorua ››</a>
-        <a href="http://sv.wikipedia.org/wiki/Rotorua">Rotorua Wikipedia ››</a>
-    </div>
-    <div id="info5">
-    	<h3>Mer info</h3>
-        <a href="http://www.rotoruanz.com/">Rotorua ››</a>
-    	<a href="http://www.hellsgate.co.nz/">Hells Gate ››</a>
-        <a href="http://www.agrodome.co.nz/Presentation/Presentation1.aspx?ID=7900">Agrodome Sheep Show ››</a>
-    </div>
-    <div id="info6">
-    	<h3>Mer info</h3>
-    	<a href="http://www.hukafalls.com/">Huka Falls ››</a>
-        <a href="http://www.artdeconapier.com/">Napier ››</a>
-        <a href="http://sv.wikipedia.org/wiki/Napier,_Nya_Zeeland">Napier Wikipedia ››</a>
-        <a href="http://www.napier.govt.nz/index.php?pid=412">Bluff Hill Lookout ››</a>
-    </div>
-    <div id="info7">
-    	<h3>Mer info</h3>
-    	<a href="http://www.norsewood.co.nz/">Norsewood ››</a>
-        <a href="http://www.cityofmasterton.co.nz/">Masterton ››</a>
-        <a href="http://www.cityofmasterton.co.nz/queen-elizabeth-2-park.html">Queen Elizabeth II Park ››</a>
-        <a href="http://www.wellingtonnz.com/">Wellington ››</a>
-        <a href="http://sv.wikipedia.org/wiki/Wellington">Wellington Wikipedia ››</a>
-    </div>
-    <div id="info8">
-    	<h3>Mer info</h3>
-    	<a href="http://www.castlehill.net.nz/castlehill/castlehill.php">Castle Hill ››</a>
-        <a href="http://www.greydistrict.co.nz/greymouth/">Greymouth ››</a>
-        <a href="http://www.punakaiki.co.nz/">Pancake Rocks ››</a>
-    </div>
-    <div id="info9">
-    	<h3>Mer info</h3>
-        <a href="http://www.foxguides.co.nz/">Fox Glacier ››</a>
-        <a href="http://www.haastnz.com/">Haast ››</a>
-    </div>
-    <div id="info10">
-    	<h3>Mer info</h3>
-        <a href="http://www.lakewanaka.co.nz/">Wanaka ››</a>
-    	<a href="http://www.puzzlingworld.co.nz/">Puzzling World ››</a>
-        <a href="http://www.queenstownnz.co.nz/">Queenstown ››</a>
-        <a href="http://sv.wikipedia.org/wiki/Queenstown,_Nya_Zeeland">Queenstown Wikipedia ››</a>
-        <a href="http://www.skyline.co.nz/queenstown/gondola/">Skyline Gondola ››</a>
-    </div>
-    <div id="info11">
-    	<h3>Mer info</h3>
-        <a href="http://www.queenstownnz.co.nz/">Queenstown ››</a>
-    	<a href="http://www.shotoverjet.com/">Shotover Jet ››</a>
-        <a href="http://www.arrowtown.com/">Arrowtown ››</a>
-    </div>
-    <div id="info12">
-    	<h3>Mer info</h3>
-        <a href="http://www.queenstownnz.co.nz/">Queenstown ››</a>
-    	<a href="http://www.realjourneys.co.nz/Main/TSSEarnslaw_WP/">TSS Earnslaw Cruise ››</a>
-        <a href="http://www.bungy.co.nz/">AJ Hackett Bungy ››</a>
-        <br />
-        <a href="photos/bungymovie.html"><h4>Film: Bungyjump ››</h4></a>
-    </div>
-    <div id="info13">
-    	<h3>Mer info</h3>
-    	<a href="http://www.gibbstonvalleynz.com/">Gibbston Winery ››</a>
-        <a href="http://www.dunedinnz.com/visit/home.aspx">Dunedin ››</a>
-        <a href="http://sv.wikipedia.org/wiki/Dunedin">Dunedin Wikipedia ››</a>
-    </div>
-    <div id="info14">
-    	<h3>Mer info</h3>
-    	<a href="http://www.dunedinnz.com/visit/home.aspx">Dunedin ››</a>
-        <a href="http://www.newzealand.com/int/article/tunnel-beach-walkway/">Tunnel Beach ››</a>
-    </div>
-    <div id="info15">
-    	<h3>Mer info</h3>
-    	<a href="http://www.dunedinnz.com/visit/home.aspx">Dunedin ››</a>
-        <a href="http://en.wikipedia.org/wiki/Baldwin_Street,_Dunedin">Baldwin Street ››</a>
-        <a href="http://www.albatross.org.nz/">Royal Albatross Centre ››</a>
-    </div>
-    <div id="info16">
-    	<h3>Mer info</h3>
-    	<a href="http://www.christchurchnz.com/row.aspx">Christchurch ››</a>
-        <a href="http://sv.wikipedia.org/wiki/Christchurch,_Nya_Zeeland">Christchurch Wikipedia ››</a>
-    </div>
-    <div id="info17">
-    	<h3>Mer info</h3>
-        <a href="http://www.airnewzealand.com/gateway">Air New Zealand ››</a>
-    	<a href="http://www.visitbrisbane.com.au/Travel/Default.aspx">Visit Brisbane ››</a>
-        <a href="http://sv.wikipedia.org/wiki/Brisbane">Brisbane Wikipedia ››</a>
-    </div>
-    <div id="info18">
-    	<h3>Mer info</h3>
-    	<a href="http://www.visitbrisbane.com.au/Travel/Default.aspx">Visit Brisbane ››</a>
-        <a href="http://www.visitbrisbane.com.au/Travel/Products/ProductView.aspx?id=3512">Queen Street Mall ››</a>
-    </div>
-    <div id="info19">
-    	<h3>Mer info</h3>
-    	<a href="http://www.visitbrisbane.com.au/Travel/Default.aspx">Visit Brisbane ››</a>
-        <a href="http://www.underwaterworld.com.au/">UnderWater World ››</a>
-    </div>
-    <div id="info20">
-    	<h3>Mer info</h3>
-    	<a href="http://www.visitbrisbane.com.au/Travel/Default.aspx">Visit Brisbane ››</a>
-        <a href="http://movieworld.myfun.com.au/">Movie World ››</a>
-    </div>
-    <div id="info21">
-    	<h3>Mer info</h3>
-    	<a href="http://www.visitbrisbane.com.au/Travel/Default.aspx">Visit Brisbane ››</a>
-        <a href="http://www.rainforestskywalk.com.au/">Tamborine Rainforest ››</a>
-        <a href="http://surfersparadise.com/surfers-paradise-beach">Surfers Paradise ››</a>
-    </div>
-    <div id="info22">
-    	<h3>Mer info</h3>
-    	<a href="http://www.visitbrisbane.com.au/Travel/Default.aspx">Visit Brisbane ››</a>
-    </div>
-    <div id="info23">
-    	<h3>Mer info</h3>
-    	<a href="http://www.visitbrisbane.com.au/Travel/Default.aspx">Visit Brisbane ››</a>
-        <a href="http://www.tangalooma.com/info/home/">Tangalooma Island ››</a>
-        <a href="http://www.seemoretonisland.com/">Moreton Island ››</a>
-    </div>
-    <div id="info24">
-    	<h3>Mer info</h3>
-    	<a href="http://surfersparadise.com/">Surfers Paradise ››</a>
-        <a href="http://wetnwild.myfun.com.au/">Wet'n'Wild ››</a>
-    </div>
-    <div id="info25">
-    	<h3>Mer info</h3>
-    	<a href="http://surfersparadise.com/">Surfers Paradise ››</a>
-        <a href="http://seaworld.myfun.com.au/">Sea World ››</a>
-        <a href="http://www.yambansw.com.au/main.html">Yamba ››</a>
-    </div>
-    <div id="info26">
-    	<h3>Mer info</h3>
-        <a href="http://www.yambansw.com.au/main.html">Yamba ››</a>
-    	<a href="http://www.visitnsw.com/destinations/north-coast/clarence-coast/yamba/attractions/pippi-beach-yamba">Pippi Beach ››</a>
-        <a href="http://www.coffscoast.com.au/Places-to-Visit/Towns-and-Villages/Pages/Coffs-Harbour-Area.aspx">Coffs Harbour ››</a>
-    </div>
-    <div id="info27">
-    	<h3>Mer info</h3>
-        <a href="http://www.portmacquarieinfo.com.au/">Port Macquarie ››</a>
-    	<a href="http://www.hydrogolf.com.au/index.html">Putt-putt Golf ››</a>
-    </div>
-    <div id="info28">
-    	<h3>Mer info</h3>
-        <a href="http://www.portmacquarieinfo.com.au/">Port Macquarie ››</a>
-    	<a href="http://www.billabongkoala.com.au/">Billabong Koala Park ››</a>
-        <a href="http://www.sealrocksholidaypark.com.au/">Seal Rocks ››</a>
-        <a href="http://www.belmontnsw.com.au/">Belmont ››</a>
-    </div>
-    <div id="info29">
-    	<h3>Mer info</h3>
-    	<a href="http://www.sydney.com/">Sydney ››</a>
-        <a href="http://www.sydney.se/">Sydney.se ››</a>
-        <a href="http://sv.wikipedia.org/wiki/Sydney"> Sydney Wikipedia ››</a>
-        <a href="http://www.darlingharbour.com/">Darling Harbour ››</a>
-        <a href="http://www.sydney.com/destinations/sydney/sydney-city/chinatown-and-haymarket">Chinatown Sydney ››</a>
-        <a href="http://www.metrotransport.com.au/index.php/monorail/monorail-home.html">Sydney Monorail ››</a>
-    </div>
-    <div id="info30">
-    	<h3>Mer info</h3>
-    	<a href="http://www.sydney.com/">Sydney ››</a>
-        <a href="http://www.matilda.com.au/">Matilda Cruises ››</a>
-        <a href="http://www.trippaswhitegroup.com.au/our-venues/Sydney-Tower-Buffet/7">Sydney Tower Buffet ››</a>
-    </div>
-    <div id="info31">
-    	<h3>Mer info</h3>
-        <a href="http://www.yoursingapore.com/content/traveller/en/experience.html">Your Singapore ››</a>
-        <a href="http://www.yoursingapore.com/content/traveller/en/browse/see-and-do/culture-and-heritage/a-touch-of-history/world-war-heritage-sites/YMCA-Singapore.html">YMCA Singapore ››</a>
-        <a href="http://www.clarkequay.com.sg/malls/website/index.aspx">Clarke Quay ››</a>
-    </div>
-    <div id="info32">
-    	<h3>Mer info</h3>
-        <a href="http://www.yoursingapore.com/content/traveller/en/experience.html">Your Singapore ››</a>
-    	<a href="http://www.sentosa.com.sg/en/">Sentosa ››</a>
-    </div>
-    <div id="info33">
-    	<h3>Mer info</h3>
-    	<a href="http://www.yoursingapore.com/content/traveller/en/experience.html">Your Singapore ››</a>
-        
-    </div>
-    <div id="info34">
-    	<h3>Mer info</h3>
-    	<a href="http://www.yoursingapore.com/content/traveller/en/experience.html">Your Singapore ››</a>
-        <a href="http://www.nightsafari.com.sg/">Night Safari ››</a>
-    </div>
-    <div id="info35">
-    	<h3>Mer info</h3>
-        <a href="http://www.yoursingapore.com/content/traveller/en/experience.html">Your Singapore ››</a>
-    	<a href="http://www.singaporeair.com/">Singapore Airlines ››</a>
-    </div>
-  </div> <!-- End div id="rightCol"-->
-  
- </div> <!-- End div id="main"-->
+        if (window.XMLHttpRequest) {
+          // Kod för IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp = new XMLHttpRequest();
+        } else {
+          // Kod för IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.open("GET", url, false);
+        xmlhttp.send();
 
- <div id="footer"> <!-- Footer -->
-   <p>Utvecklad av Christian Söderberg | <span style="color:#A00A0A">Senast uppdaterad: Juni 2012</span></p>
-   <div id="kiwiDiv">
-    	<img src="footer/kiwi.png" alt="Kiwi" id="kiwi" />
-   </div>
- </div> <!-- End id="footer" -->
-	
-</div> <!-- End id="wrapper" -->
-    
-</body>
+        return (xml_document = xmlhttp.responseXML); // Referens till XML-dokumentet
+      }
+
+      function writeDay() {
+        var xml_document = loadXMLDoc("diaries/diaries.xml");
+        var entries = xml_document.getElementsByTagName("entry"); // Skapa en array med alla inlägg
+
+        var date_entries = new Array(); // Skapa en array med endast dagens inlägg
+        var HTML_diaries = ""; // Tom sträng initieras för den HTML som ska visas i <div id="diaries">
+        var HTML_entries = ""; // Tom sträng för HTML som ska visas som dagboksinlägg
+        var HTML_content_header = ""; // Tom sträng för HTML som ska visas som rubrik i <div id="diaries">
+
+        for (var i = 0; i < entries.length; i++) {
+          // Kolla upp datumet för varje dagboksinlägg
+          var entry_day = entries[i].getElementsByTagName("day")[0].childNodes[0].nodeValue;
+
+          if (entry_day == the_day)
+            // Om inläggsdag är samma som sidans dag (the_day)...
+            date_entries.push(entries[i]); // ...lägg till dagens inlägg i egen array...
+        }
+        for (i = 0; i < date_entries.length; i++) {
+          // ... och ta fram all info från varje inlägg
+          var HTML_entry = ""; // Tom sträng initieras för den HTML som innehåller ETT inlägg
+          var author = date_entries[i].getElementsByTagName("author")[0].childNodes[0].nodeValue;
+          var age = date_entries[i].getElementsByTagName("author")[0].attributes.getNamedItem("age").nodeValue;
+          var date = date_entries[i].getElementsByTagName("date")[0].childNodes[0].nodeValue;
+          var day = date_entries[i].getElementsByTagName("day")[0].childNodes[0].nodeValue;
+          var place = ""; // Tom sträng initieras för place
+          var cities = date_entries[i].getElementsByTagName("city");
+          var country = date_entries[i].getElementsByTagName("country")[0].childNodes[0].nodeValue;
+          var text = date_entries[i].getElementsByTagName("text")[0].childNodes[0].nodeValue;
+          //short_date = date_entries[i].getElementsByTagName("date")[0].attributes.getNamedItem("short").nodeValue;
+
+          text = checkTextForLineBreaks(text); // Kolla om radbrytningar finns, isf behåll dessa
+
+          for (var loop = 0; loop < cities.length; loop++) {
+            // Skapa en sträng med staden/städerna
+            city = cities[loop].childNodes[0].nodeValue;
+            if (place == "")
+              // Om strängen är tom, lägg till stad
+              place = city;
+            // Annars lägg till komma-tecken och nästa stad
+            else place = place + ", " + city;
+          }
+          if (cities.length < 3) if (city != "Singapore") place = place + " (" + country + ")"; // Lägg till landet sist i strängen
+
+          HTML_entry =
+            "<span class='author'>" +
+            author +
+            ", " +
+            age +
+            " år</span>" + // Skapa HTML-kod för inlägget
+            "<p>" +
+            text +
+            "</p>";
+          if (i < date_entries.length - 1)
+            // Om det finns fler inlägg för dagen, lägg till en avdelare
+            HTML_entry = HTML_entry + "<div class='splitter'>•  •  •</div>";
+
+          HTML_entries = HTML_entries + HTML_entry; // Lägg till HTML-koden sist i HTML-kod för alla dagens inlägg
+        }
+        // Skapa HTML-kod för sidans rubriker
+        HTML_content_header =
+          "<h2>" + date + "<span class='day'>Dag " + day + "</span></h2>" + "<h3>" + place + "</h3>";
+        HTML_diaries = HTML_content_header + HTML_entries;
+        document.getElementById("diaries").innerHTML = HTML_diaries; // Skriv ut HTML-kod i div-taggen diaries
+        document.title = "Söderberg Down Under | Resedagböcker | " + date; // Ändra fönstertitel
+      }
+
+      function writePerson(name) {
+        var xml_document = loadXMLDoc("diaries/diaries.xml");
+        var entries = xml_document.getElementsByTagName("entry"); // Skapa en array med alla inlägg
+        var author_entries = new Array(); // Skapa en array med för endast författarens inlägg
+        var HTML_diaries = ""; // Tom sträng initieras för den HTML som ska visas i <div id="diaries">
+        var HTML_entries = ""; // Tom sträng för HTML som ska visas som dagboksinlägg
+        var HTML_content_header = ""; // Tom sträng för HTML som ska visas som rubrik i i <div id="diaries">
+
+        document.getElementById("diaries").style.display = "block"; // Visa/dölj rätt div-taggar
+        document.getElementById("rightCol").style.visibility = "visible";
+        document.getElementById("intro").style.display = "none";
+        document.getElementById("slideshow").style.display = "none";
+
+        for (var i = 0; i < entries.length; i++) {
+          // Kolla upp författaren för varje dagboksinlägg
+          var author = entries[i].getElementsByTagName("author")[0].childNodes[0].nodeValue;
+
+          if (author == name)
+            // Om författare är samma som vald författare (name)...
+            author_entries.push(entries[i]); // ...lägg till författarens inlägg i egen array...
+        }
+
+        for (i = 0; i < author_entries.length; i++) {
+          // ... och ta fram all info från varje inlägg
+          var HTML_entry = ""; // Tom sträng initieras för den HTML som innehåller ETT inlägg
+          var author = author_entries[i].getElementsByTagName("author")[0].childNodes[0].nodeValue;
+          var age = author_entries[i].getElementsByTagName("author")[0].attributes.getNamedItem("age").nodeValue;
+          var date = author_entries[i].getElementsByTagName("date")[0].childNodes[0].nodeValue;
+          var day = author_entries[i].getElementsByTagName("day")[0].childNodes[0].nodeValue;
+          var place = ""; // Tom sträng initieras för place
+          var cities = author_entries[i].getElementsByTagName("city");
+          var country = author_entries[i].getElementsByTagName("country")[0].childNodes[0].nodeValue;
+          var text = author_entries[i].getElementsByTagName("text")[0].childNodes[0].nodeValue;
+          //short_date = author_entries[i].getElementsByTagName("date")[0].attributes.getNamedItem("short").nodeValue;
+
+          text = checkTextForLineBreaks(text); // Kolla om radbrytningar finns, isf behåll dessa
+
+          for (var loop = 0; loop < cities.length; loop++) {
+            // Skapa en sträng med staden/städerna
+            city = cities[loop].childNodes[0].nodeValue;
+            if (place == "")
+              // Om strängen är tom, lägg till stad
+              place = city;
+            // Annars lägg till komma-tecken och nästa stad
+            else place = place + ", " + city;
+          }
+          if (cities.length < 3) place = place + " (" + country + ")"; // Lägg till landet sist i strängen
+
+          HTML_entry =
+            "<div id='" +
+            name +
+            day +
+            "'><h4>" +
+            date + // Skapa HTML-kod för inlägget
+            "<span class='place'>" +
+            place +
+            "</h4>" +
+            "<p>" +
+            text +
+            "</p></div>";
+          if (i < author_entries.length - 1)
+            // Om det finns fler inlägg för dagen, lägg till en avdelare
+            HTML_entry = HTML_entry + "<div class='splitter'>•  •  •</div>";
+
+          HTML_entries = HTML_entries + HTML_entry; // Lägg till HTML-koden sist i HTML-kod för alla dagens inlägg
+        }
+        HTML_content_header = "<h2>" + name + "s resedagbok</h2>";
+        HTML_diaries = HTML_content_header + HTML_entries;
+        document.getElementById("diaries").innerHTML = HTML_diaries; // Skriv ut HTML-kod i div-taggen diaries
+      }
+
+      function checkTextForLineBreaks(text) {
+        // Leta igenom text efter radbrytningar (\n) och
+        var new_text = ""; // ersätt dessa med <br /> för HTML
+        var pos1 = 0;
+        var pos2 = 0;
+        do {
+          pos2 = text.indexOf("\n", pos1);
+          if (pos2 > -1) new_text = new_text + text.substring(pos1, pos2) + "<br />";
+          else new_text = new_text + text.substring(pos1);
+          pos1 = pos2 + 1;
+        } while (pos2 > -1);
+
+        return new_text;
+      }
+
+      function chkKiwi() {
+        // Om fönstret är för litet så visas inte kiwifågel
+        if (window.innerWidth < 1080)
+          // längst ner i höger hörn
+          document.getElementById("kiwi").style.visibility = "hidden";
+        else document.getElementById("kiwi").style.visibility = "visible";
+      }
+      // show me -->
+    </script>
+  </head>
+
+  <body onload="initPage(); chkKiwi();" onresize="chkKiwi()">
+    <div id="wrapper">
+      <!-- Page Wrapper -->
+
+      <div id="headerNav">
+        <!-- Header and navigation -->
+        <div id="header">
+          <!-- Page Header -->
+          <img src="pics/map.png" id="pic0" alt="Oceanien" />
+          <img src="pics/headerqoute.png" id="pic1" alt="Skippa charter och få en upplevelse för livet!" />
+          <h2>SÖDERBERG</h2>
+          <h1>DOWN UNDER</h1>
+        </div>
+        <!-- End div id="header"-->
+
+        <div id="navigation">
+          <!-- Global navigation -->
+          <a href="index.html">START</a>
+          <a href="diaries.html" class="thisPage">RESEDAGBÖCKER</a>
+          <a href="photos.html">FOTOALBUM</a>
+          <a href="destinations.html">DESTINATIONER</a>
+        </div>
+        <!-- End div id="navigation"-->
+      </div>
+      <!-- End div id="headerNav"-->
+
+      <div id="main">
+        <!-- Main content section -->
+
+        <div id="localNav">
+          <!-- Local navigation -->
+          <h4>Resedagböcker</h4>
+          <a href="#" onclick="changeDay(1,0); return false;">Dag 1: Flyg till Singapore</a>
+          <a href="#" onclick="changeDay(2,0); return false;">Dag 2: Singapore</a>
+          <a href="#" onclick="changeDay(3,7); return false;">Dag 3: Auckland</a>
+          <a href="#" onclick="changeDay(4,14); return false;">Dag 4: Waitomo Caves</a>
+          <a href="#" onclick="changeDay(5,24); return false;">Dag 5: Rotorua</a>
+          <a href="#" onclick="changeDay(6,19); return false;">Dag 6: Napier</a>
+          <a href="#" onclick="changeDay(7,16); return false;">Dag 7: Masterton</a>
+          <a href="#" onclick="changeDay(8,33); return false;">Dag 8: Greymouth</a>
+          <a href="#" onclick="changeDay(9,23); return false;">Dag 9: Haast</a>
+          <a href="#" onclick="changeDay(10,9); return false;">Dag 10: Wanaka</a>
+          <a href="#" onclick="changeDay(11,7); return false;">Dag 11: Queenstown</a>
+          <a href="#" onclick="changeDay(12,15); return false;">Dag 12: Queenstown</a>
+          <a href="#" onclick="changeDay(13,8); return false;">Dag 13: Dunedin</a>
+          <a href="#" onclick="changeDay(14,20); return false;">Dag 14: Dunedin</a>
+          <a href="#" onclick="changeDay(15,12); return false;">Dag 15: Dunedin</a>
+          <a href="#" onclick="changeDay(16,2); return false;">Dag 16: Christchurch</a>
+          <a href="#" onclick="changeDay(17,7); return false;">Dag 17: Brisbane</a>
+          <a href="#" onclick="changeDay(18,2); return false;">Dag 18: Brisbane</a>
+          <a href="#" onclick="changeDay(19,12); return false;">Dag 19: Brisbane</a>
+          <a href="#" onclick="changeDay(20,7); return false;">Dag 20: Brisbane</a>
+          <a href="#" onclick="changeDay(21,12); return false;">Dag 21: Brisbane</a>
+          <a href="#" onclick="changeDay(22,3); return false;">Dag 22: Brisbane</a>
+          <a href="#" onclick="changeDay(23,4); return false;">Dag 23: Tangalooma</a>
+          <a href="#" onclick="changeDay(24,4); return false;">Dag 24: Surfers Paradise</a>
+          <a href="#" onclick="changeDay(25,13); return false;">Dag 25: Surfers Paradise</a>
+          <a href="#" onclick="changeDay(26,16); return false;">Dag 26: Yamba</a>
+          <a href="#" onclick="changeDay(27,3); return false;">Dag 27: Port Macquarie</a>
+          <a href="#" onclick="changeDay(28,9); return false;">Dag 28: Belmont</a>
+          <a href="#" onclick="changeDay(29,4); return false;">Dag 29: Sydney</a>
+          <a href="#" onclick="changeDay(30,10); return false;">Dag 30: Sydney</a>
+          <a href="#" onclick="changeDay(31,3); return false;">Dag 31: Singapore</a>
+          <a href="#" onclick="changeDay(32,10); return false;">Dag 32: Singapore</a>
+          <a href="#" onclick="changeDay(33,5); return false;">Dag 33: Singapore</a>
+          <a href="#" onclick="changeDay(34,3); return false;">Dag 34: Singapore</a>
+          <a href="#" onclick="changeDay(35,6); return false;">Dag 35: Singapore</a>
+        </div>
+        <!-- End div id="localNav" -->
+
+        <div id="content">
+          <!-- Content -->
+          <div id="prevNextUp" class="prevNext" style="border-bottom: 1px dotted #a00a0a">
+            <a href="#" onclick="changeDay('prev',0); return false;" id="prev1">‹‹ Föregående dag</a>
+            <a href="#" onclick="changeDay('next',0); return false;" id="next1" class="alignRight">Nästa dag ››</a>
+          </div>
+          <!-- End div id="prevNextUp"-->
+
+          <div id="intro">
+            <!-- Den här delen visas som förstasida för fliken Resedagböcker -->
+            <h2>Resedagböcker</h2>
+            <p>
+              Under resans gång hade sönerna Christian och Fredrik i uppgift från skolan att skriva lite om varje dags
+              händelser. Mamma Ann hakade på och till slut kom vi hem med tre fullskrivna dagböcker. Här kan du välja
+              att läsa alla tre dag för dag, eller välja en enskild person och läsa dennes berättelse rakt igenom. Låt
+              dig inspireras av dessa personliga skildringar av resan!
+            </p>
+            <a href="#" onclick="changeDay(1,0); return false;"
+              ><img src="diaries/all.jpg" alt="Läs allas dagböcker från start till mål" /></a
+            ><br />
+            <!-- Öppna samlad dag 1-->
+            <a href="diaries/ann.html"><img src="diaries/ann.jpg" alt="Läs Anns dagbok" /></a>
+            <!-- Öppna bara Anns dagbok -->
+            <a href="diaries/christian.html"><img src="diaries/christian.jpg" alt="Läs Christians dagbok" /></a>
+            <!-- Öppna bara Christians dagbok-->
+            <a href="diaries/fredrik.html"><img src="diaries/fredrik.jpg" alt="Läs Fredriks dagbok" /></a>
+            <!-- Öppna bara Fredriks dagbok-->
+          </div>
+
+          <div id="slideshow">
+            <img src="pics/ss/prev.gif" id="ssNavL" alt="Previous pic" onclick="showPrevPict()" />
+            <img src="photos/album/day1/day1_0.jpg" id="ssPic" alt="Bildspel" height="338px" />
+            <img src="pics/ss/next.gif" id="ssNavR" alt="Next pic" onclick="showNextPict()" />
+          </div>
+
+          <div id="diaries">
+            <!-- I den här taggen hamnar det dynamiska dagboksinnehållet -->
+          </div>
+          <!-- End div id="diaries"-->
+
+          <div id="prevNextDown" class="prevNext" style="border-top: 1px dotted #a00a0a">
+            <a href="#" onclick="changeDay('prev',0); return false;" id="prev2">‹‹ Föregående dag</a>
+            <a href="#" onclick="changeDay('next',0); return false;" id="next2" class="alignRight">Nästa dag ››</a>
+          </div>
+          <!-- End div id="prevNextDown"-->
+        </div>
+        <!-- End div id="content"-->
+
+        <div id="rightCol">
+          <!-- Right column -->
+          <div id="info1">
+            <h3>Mer info</h3>
+            <a href="http://www.singaporeair.com/">Singapore Airlines ››</a>
+          </div>
+          <div id="info2">
+            <h3>Mer info</h3>
+            <a href="http://www.yoursingapore.com/content/traveller/en/experience.html">Your Singapore ››</a>
+            <a href="http://sv.wikipedia.org/wiki/Singapore">Singapore Wikipedia ››</a>
+            <a href="http://www.rendezvoushotels.com/singapore/">Rendezvous Singapore ››</a>
+            <a href="http://en.wikipedia.org/wiki/Jurong_Reptile_Park">Jurong Reptile Park ››</a>
+          </div>
+          <div id="info3">
+            <h3>Mer info</h3>
+            <a href="http://www.aucklandnz.com/">Auckland ››</a>
+            <a href="http://sv.wikipedia.org/wiki/Auckland">Auckland Wikipedia ››</a>
+            <a href="http://www.auckland.se/">Auckland.se ››</a>
+            <a href="http://www.skycityauckland.co.nz/Attractions/Skytower.html">Sky Tower ››</a>
+          </div>
+          <div id="info4">
+            <h3>Mer info</h3>
+            <a href="http://www.waitomo.com/waitomo-glowworm-caves.aspx">Waitomo Caves ››</a>
+            <a href="http://www.kiwihouse.org.nz/">Otorohanga Kiwi House ››</a>
+            <a href="http://www.rotoruanz.com/">Rotorua ››</a>
+            <a href="http://sv.wikipedia.org/wiki/Rotorua">Rotorua Wikipedia ››</a>
+          </div>
+          <div id="info5">
+            <h3>Mer info</h3>
+            <a href="http://www.rotoruanz.com/">Rotorua ››</a>
+            <a href="http://www.hellsgate.co.nz/">Hells Gate ››</a>
+            <a href="http://www.agrodome.co.nz/Presentation/Presentation1.aspx?ID=7900">Agrodome Sheep Show ››</a>
+          </div>
+          <div id="info6">
+            <h3>Mer info</h3>
+            <a href="http://www.hukafalls.com/">Huka Falls ››</a>
+            <a href="http://www.artdeconapier.com/">Napier ››</a>
+            <a href="http://sv.wikipedia.org/wiki/Napier,_Nya_Zeeland">Napier Wikipedia ››</a>
+            <a href="http://www.napier.govt.nz/index.php?pid=412">Bluff Hill Lookout ››</a>
+          </div>
+          <div id="info7">
+            <h3>Mer info</h3>
+            <a href="http://www.norsewood.co.nz/">Norsewood ››</a>
+            <a href="http://www.cityofmasterton.co.nz/">Masterton ››</a>
+            <a href="http://www.cityofmasterton.co.nz/queen-elizabeth-2-park.html">Queen Elizabeth II Park ››</a>
+            <a href="http://www.wellingtonnz.com/">Wellington ››</a>
+            <a href="http://sv.wikipedia.org/wiki/Wellington">Wellington Wikipedia ››</a>
+          </div>
+          <div id="info8">
+            <h3>Mer info</h3>
+            <a href="http://www.castlehill.net.nz/castlehill/castlehill.php">Castle Hill ››</a>
+            <a href="http://www.greydistrict.co.nz/greymouth/">Greymouth ››</a>
+            <a href="http://www.punakaiki.co.nz/">Pancake Rocks ››</a>
+          </div>
+          <div id="info9">
+            <h3>Mer info</h3>
+            <a href="http://www.foxguides.co.nz/">Fox Glacier ››</a>
+            <a href="http://www.haastnz.com/">Haast ››</a>
+          </div>
+          <div id="info10">
+            <h3>Mer info</h3>
+            <a href="http://www.lakewanaka.co.nz/">Wanaka ››</a>
+            <a href="http://www.puzzlingworld.co.nz/">Puzzling World ››</a>
+            <a href="http://www.queenstownnz.co.nz/">Queenstown ››</a>
+            <a href="http://sv.wikipedia.org/wiki/Queenstown,_Nya_Zeeland">Queenstown Wikipedia ››</a>
+            <a href="http://www.skyline.co.nz/queenstown/gondola/">Skyline Gondola ››</a>
+          </div>
+          <div id="info11">
+            <h3>Mer info</h3>
+            <a href="http://www.queenstownnz.co.nz/">Queenstown ››</a>
+            <a href="http://www.shotoverjet.com/">Shotover Jet ››</a>
+            <a href="http://www.arrowtown.com/">Arrowtown ››</a>
+          </div>
+          <div id="info12">
+            <h3>Mer info</h3>
+            <a href="http://www.queenstownnz.co.nz/">Queenstown ››</a>
+            <a href="http://www.realjourneys.co.nz/Main/TSSEarnslaw_WP/">TSS Earnslaw Cruise ››</a>
+            <a href="http://www.bungy.co.nz/">AJ Hackett Bungy ››</a>
+            <br />
+            <a href="photos/bungymovie.html"><h4>Film: Bungyjump ››</h4></a>
+          </div>
+          <div id="info13">
+            <h3>Mer info</h3>
+            <a href="http://www.gibbstonvalleynz.com/">Gibbston Winery ››</a>
+            <a href="http://www.dunedinnz.com/visit/home.aspx">Dunedin ››</a>
+            <a href="http://sv.wikipedia.org/wiki/Dunedin">Dunedin Wikipedia ››</a>
+          </div>
+          <div id="info14">
+            <h3>Mer info</h3>
+            <a href="http://www.dunedinnz.com/visit/home.aspx">Dunedin ››</a>
+            <a href="http://www.newzealand.com/int/article/tunnel-beach-walkway/">Tunnel Beach ››</a>
+          </div>
+          <div id="info15">
+            <h3>Mer info</h3>
+            <a href="http://www.dunedinnz.com/visit/home.aspx">Dunedin ››</a>
+            <a href="http://en.wikipedia.org/wiki/Baldwin_Street,_Dunedin">Baldwin Street ››</a>
+            <a href="http://www.albatross.org.nz/">Royal Albatross Centre ››</a>
+          </div>
+          <div id="info16">
+            <h3>Mer info</h3>
+            <a href="http://www.christchurchnz.com/row.aspx">Christchurch ››</a>
+            <a href="http://sv.wikipedia.org/wiki/Christchurch,_Nya_Zeeland">Christchurch Wikipedia ››</a>
+          </div>
+          <div id="info17">
+            <h3>Mer info</h3>
+            <a href="http://www.airnewzealand.com/gateway">Air New Zealand ››</a>
+            <a href="http://www.visitbrisbane.com.au/Travel/Default.aspx">Visit Brisbane ››</a>
+            <a href="http://sv.wikipedia.org/wiki/Brisbane">Brisbane Wikipedia ››</a>
+          </div>
+          <div id="info18">
+            <h3>Mer info</h3>
+            <a href="http://www.visitbrisbane.com.au/Travel/Default.aspx">Visit Brisbane ››</a>
+            <a href="http://www.visitbrisbane.com.au/Travel/Products/ProductView.aspx?id=3512">Queen Street Mall ››</a>
+          </div>
+          <div id="info19">
+            <h3>Mer info</h3>
+            <a href="http://www.visitbrisbane.com.au/Travel/Default.aspx">Visit Brisbane ››</a>
+            <a href="http://www.underwaterworld.com.au/">UnderWater World ››</a>
+          </div>
+          <div id="info20">
+            <h3>Mer info</h3>
+            <a href="http://www.visitbrisbane.com.au/Travel/Default.aspx">Visit Brisbane ››</a>
+            <a href="http://movieworld.myfun.com.au/">Movie World ››</a>
+          </div>
+          <div id="info21">
+            <h3>Mer info</h3>
+            <a href="http://www.visitbrisbane.com.au/Travel/Default.aspx">Visit Brisbane ››</a>
+            <a href="http://www.rainforestskywalk.com.au/">Tamborine Rainforest ››</a>
+            <a href="http://surfersparadise.com/surfers-paradise-beach">Surfers Paradise ››</a>
+          </div>
+          <div id="info22">
+            <h3>Mer info</h3>
+            <a href="http://www.visitbrisbane.com.au/Travel/Default.aspx">Visit Brisbane ››</a>
+          </div>
+          <div id="info23">
+            <h3>Mer info</h3>
+            <a href="http://www.visitbrisbane.com.au/Travel/Default.aspx">Visit Brisbane ››</a>
+            <a href="http://www.tangalooma.com/info/home/">Tangalooma Island ››</a>
+            <a href="http://www.seemoretonisland.com/">Moreton Island ››</a>
+          </div>
+          <div id="info24">
+            <h3>Mer info</h3>
+            <a href="http://surfersparadise.com/">Surfers Paradise ››</a>
+            <a href="http://wetnwild.myfun.com.au/">Wet'n'Wild ››</a>
+          </div>
+          <div id="info25">
+            <h3>Mer info</h3>
+            <a href="http://surfersparadise.com/">Surfers Paradise ››</a>
+            <a href="http://seaworld.myfun.com.au/">Sea World ››</a>
+            <a href="http://www.yambansw.com.au/main.html">Yamba ››</a>
+          </div>
+          <div id="info26">
+            <h3>Mer info</h3>
+            <a href="http://www.yambansw.com.au/main.html">Yamba ››</a>
+            <a
+              href="http://www.visitnsw.com/destinations/north-coast/clarence-coast/yamba/attractions/pippi-beach-yamba"
+              >Pippi Beach ››</a
+            >
+            <a href="http://www.coffscoast.com.au/Places-to-Visit/Towns-and-Villages/Pages/Coffs-Harbour-Area.aspx"
+              >Coffs Harbour ››</a
+            >
+          </div>
+          <div id="info27">
+            <h3>Mer info</h3>
+            <a href="http://www.portmacquarieinfo.com.au/">Port Macquarie ››</a>
+            <a href="http://www.hydrogolf.com.au/index.html">Putt-putt Golf ››</a>
+          </div>
+          <div id="info28">
+            <h3>Mer info</h3>
+            <a href="http://www.portmacquarieinfo.com.au/">Port Macquarie ››</a>
+            <a href="http://www.billabongkoala.com.au/">Billabong Koala Park ››</a>
+            <a href="http://www.sealrocksholidaypark.com.au/">Seal Rocks ››</a>
+            <a href="http://www.belmontnsw.com.au/">Belmont ››</a>
+          </div>
+          <div id="info29">
+            <h3>Mer info</h3>
+            <a href="http://www.sydney.com/">Sydney ››</a>
+            <a href="http://www.sydney.se/">Sydney.se ››</a>
+            <a href="http://sv.wikipedia.org/wiki/Sydney"> Sydney Wikipedia ››</a>
+            <a href="http://www.darlingharbour.com/">Darling Harbour ››</a>
+            <a href="http://www.sydney.com/destinations/sydney/sydney-city/chinatown-and-haymarket"
+              >Chinatown Sydney ››</a
+            >
+            <a href="http://www.metrotransport.com.au/index.php/monorail/monorail-home.html">Sydney Monorail ››</a>
+          </div>
+          <div id="info30">
+            <h3>Mer info</h3>
+            <a href="http://www.sydney.com/">Sydney ››</a>
+            <a href="http://www.matilda.com.au/">Matilda Cruises ››</a>
+            <a href="http://www.trippaswhitegroup.com.au/our-venues/Sydney-Tower-Buffet/7">Sydney Tower Buffet ››</a>
+          </div>
+          <div id="info31">
+            <h3>Mer info</h3>
+            <a href="http://www.yoursingapore.com/content/traveller/en/experience.html">Your Singapore ››</a>
+            <a
+              href="http://www.yoursingapore.com/content/traveller/en/browse/see-and-do/culture-and-heritage/a-touch-of-history/world-war-heritage-sites/YMCA-Singapore.html"
+              >YMCA Singapore ››</a
+            >
+            <a href="http://www.clarkequay.com.sg/malls/website/index.aspx">Clarke Quay ››</a>
+          </div>
+          <div id="info32">
+            <h3>Mer info</h3>
+            <a href="http://www.yoursingapore.com/content/traveller/en/experience.html">Your Singapore ››</a>
+            <a href="http://www.sentosa.com.sg/en/">Sentosa ››</a>
+          </div>
+          <div id="info33">
+            <h3>Mer info</h3>
+            <a href="http://www.yoursingapore.com/content/traveller/en/experience.html">Your Singapore ››</a>
+          </div>
+          <div id="info34">
+            <h3>Mer info</h3>
+            <a href="http://www.yoursingapore.com/content/traveller/en/experience.html">Your Singapore ››</a>
+            <a href="http://www.nightsafari.com.sg/">Night Safari ››</a>
+          </div>
+          <div id="info35">
+            <h3>Mer info</h3>
+            <a href="http://www.yoursingapore.com/content/traveller/en/experience.html">Your Singapore ››</a>
+            <a href="http://www.singaporeair.com/">Singapore Airlines ››</a>
+          </div>
+        </div>
+        <!-- End div id="rightCol"-->
+      </div>
+      <!-- End div id="main"-->
+
+      <div id="footer">
+        <!-- Footer -->
+        <p>Utvecklad av Christian Söderberg | <span style="color: #a00a0a">Senast uppdaterad: Juni 2012</span></p>
+        <div id="kiwiDiv">
+          <img src="footer/kiwi.png" alt="Kiwi" id="kiwi" />
+        </div>
+      </div>
+      <!-- End id="footer" -->
+    </div>
+    <!-- End id="wrapper" -->
+  </body>
 </html>
