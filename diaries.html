@@ -159,7 +159,7 @@
       }
 
       function writeDay() {
-        var xml_document = loadXMLDoc("diaries/diaries.xml");
+        var xml_document = loadXMLDoc("./src/db/diaries.xml");
         var entries = xml_document.getElementsByTagName("entry"); // Skapa en array med alla inlägg
 
         var date_entries = new Array(); // Skapa en array med endast dagens inlägg
@@ -225,7 +225,7 @@
       }
 
       function writePerson(name) {
-        var xml_document = loadXMLDoc("diaries/diaries.xml");
+        var xml_document = loadXMLDoc("./src/db/diaries.xml");
         var entries = xml_document.getElementsByTagName("entry"); // Skapa en array med alla inlägg
         var author_entries = new Array(); // Skapa en array med för endast författarens inlägg
         var HTML_diaries = ""; // Tom sträng initieras för den HTML som ska visas i <div id="diaries">
