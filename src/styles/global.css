@@ -273,7 +273,7 @@ iframe {
 /* FONTS */
 @font-face {
   font-family: "Grandesign Neue Serif";
-  src: url("fonts/Grandesign Neue Serif.ttf");
+  src: url("../fonts/Grandesign Neue Serif.ttf");
 }
 /* GOOGLE FONTS */
-font-family: "Bree Serif", serif;
+/* font-family: "Bree Serif", serif; */
