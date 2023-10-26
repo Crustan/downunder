@@ -3,9 +3,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Söderberg Down Under | Resedagböcker</title>
-    <link rel="stylesheet" type="text/css" href="style.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="diaries/diaries.css" media="all" />
-    <link href="http://fonts.googleapis.com/css?family=Bree+Serif|Fugaz+One|Brawler" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="./src/styles/global.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="./src/styles/diaries.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Bree+Serif|Fugaz+One|Brawler" />
 
     <script type="text/javascript" language="javascript">
       <!-- hide me from older browsers
@@ -119,13 +119,8 @@
 
         if (day_pic_nr != 0)
           // Så länge inte första bilden visas
-          ssPict.src =
-            "photos/album/day" +
-            the_day +
-            "/" +
-            f_name +
-            (Number(day_pic_nr) - 1) +
-            ".jpg"; // Ändra sökvägen till föregående bild
+          ssPict.src = "photos/album/day" + the_day + "/" + f_name + (Number(day_pic_nr) - 1) + ".jpg";
+        // Ändra sökvägen till föregående bild
         else ssPict.src = "photos/album/day" + the_day + "/" + f_name + (Number(num_of_pics) - 1) + ".jpg";
       }
       function showNextPict() {
