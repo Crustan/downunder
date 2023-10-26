@@ -1,72 +1,112 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Söderberg Down Under | Destinationer</title>
+    <link rel="stylesheet" type="text/css" href="style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="destinations/destinations.css" media="all" />
+    <link href="http://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet" type="text/css" />
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
-  <title>Söderberg Down Under | Destinationer</title>
-  <link rel="stylesheet" type="text/css" href="style.css" media="all" />
-  <link rel="stylesheet" type="text/css" href="destinations/destinations.css" media="all" />
-  <link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css' />	
-  
-  <script type="text/javascript" language="javascript">
-  	<!-- hide me from older browsers
-	function chkKiwi() { 														// Om fönstret är för litet så visas inte kiwifågel
-		if (window.innerWidth < 1280)											// längst ner i höger hörn
-			document.getElementById("kiwi").style.visibility = "hidden";
-		else
-			document.getElementById("kiwi").style.visibility = "visible";
-	}
-	// show me -->
-  </script>
-</head>
+    <script type="text/javascript" language="javascript">
+      <!-- hide me from older browsers
+      function chkKiwi() {
+        // Om fönstret är för litet så visas inte kiwifågel
+        if (window.innerWidth < 1280)
+          // längst ner i höger hörn
+          document.getElementById("kiwi").style.visibility = "hidden";
+        else document.getElementById("kiwi").style.visibility = "visible";
+      }
+      // show me -->
+    </script>
+  </head>
 
-<body onload="chkKiwi();" onresize="chkKiwi()">
+  <body onload="chkKiwi();" onresize="chkKiwi()">
+    <div id="wrapper">
+      <!-- Page Wrapper -->
+      <div id="headerNav">
+        <!-- Header and navigation -->
+        <div id="header">
+          <!-- Page Header -->
+          <img src="pics/map.png" id="pic0" alt="Oceanien" />
+          <img src="pics/headerqoute.png" id="pic1" alt="Skippa charter och få en upplevelse för livet!" />
+          <h2>SÖDERBERG</h2>
+          <h1>DOWN UNDER</h1>
+        </div>
+        <!-- End div id="header"-->
 
-<div id="wrapper"> <!-- Page Wrapper -->
- <div id="headerNav"> <!-- Header and navigation -->
-  <div id="header"> <!-- Page Header -->
-    <img src="pics/map.png" id="pic0" alt="Oceanien" />
-    <img src="pics/headerqoute.png" id="pic1" alt="Skippa charter och få en upplevelse för livet!" />
-    <h2>SÖDERBERG</h2>
-    <h1>DOWN UNDER</h1>
-  </div> <!-- End div id="header"-->
+        <div id="navigation">
+          <!-- Global navigation -->
+          <a href="index.html">START</a>
+          <a href="diaries.html">RESEDAGBÖCKER</a>
+          <a href="photos.html">FOTOALBUM</a>
+          <a href="destinations.html" class="thisPage">DESTINATIONER</a>
+        </div>
+        <!-- End div id="navigation"-->
+      </div>
+      <!-- End div id="headerNav"-->
 
-  <div id="navigation"> <!-- Global navigation -->  
-    <a href="index.html">START</a>
-    <a href="diaries.html">RESEDAGBÖCKER</a>
-    <a href="photos.html">FOTOALBUM</a>
-    <a href="destinations.html" class="thisPage">DESTINATIONER</a>
-  </div> <!-- End div id="navigation"-->
- </div>	<!-- End div id="headerNav"-->
- 
- <div id="main"> <!-- Main content section-->
-  
-  <div id="localNav"> <!-- Local navigation -->
-  	<h4>Destinationer</h4>
-    <a href="destinations/nz.html">Nya Zeeland</a>
-    <a href="destinations/au.html">Australien</a>
-  </div><!-- End div id="localNav" -->
+      <div id="main">
+        <!-- Main content section-->
 
-  <div id="content"> <!-- Content -->
-    <h2>Destinationer</h2>
-    <p>Innan man åker iväg på en resa på egen hand kan det vara en bra idé att ta reda på vilka ställen man vill och kanske bör besöka i ett land. Vi hade turen att vår vän Jonas på Nya Zeeland jobbade på resebyrå när vi åkte, så han lade fram ett dagsschema för oss att följa under våra två veckor i landet. Schemat innehöll tips på sevärdheter, attraktioner och hotell att bo på under vägen. I Australien hjälpte Jonas föräldrar oss att hitta de bästa aktiviteterna omkring Brisbane.</p>
-    <p>För oss var detta otroligt värdefullt, och därför kan också ni få ta del av vår resrutt. Här nedan finns en karta där de större delen av de stopp vi gjort på Nya Zeeland och i Australien finns utmärkta. Vill du ha mer detaljerad information om de olika destinationerna kan du klicka dig in på någon av länkarna till vänster.</p> 
-     
-    <div id="googlemap">
-    <iframe width="700" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.se/maps/ms?msa=0&amp;msid=214815164946569323998.0004bfe897c0b0f5cd62d&amp;hl=sv&amp;ie=UTF8&amp;t=m&amp;ll=-36.412358,164.058034&amp;spn=19.45885,25.709197&amp;output=embed"></iframe><br /><small>Visa <a href="https://maps.google.se/maps/ms?msa=0&amp;msid=214815164946569323998.0004bfe897c0b0f5cd62d&amp;hl=sv&amp;ie=UTF8&amp;t=m&amp;ll=-36.412358,164.058034&amp;spn=19.45885,25.709197&amp;source=embed" style="color:#0000FF;text-align:left" target="_blank">större karta</a></small>
+        <div id="localNav">
+          <!-- Local navigation -->
+          <h4>Destinationer</h4>
+          <a href="destinations/nz.html">Nya Zeeland</a>
+          <a href="destinations/au.html">Australien</a>
+        </div>
+        <!-- End div id="localNav" -->
+
+        <div id="content">
+          <!-- Content -->
+          <h2>Destinationer</h2>
+          <p>
+            Innan man åker iväg på en resa på egen hand kan det vara en bra idé att ta reda på vilka ställen man vill
+            och kanske bör besöka i ett land. Vi hade turen att vår vän Jonas på Nya Zeeland jobbade på resebyrå när vi
+            åkte, så han lade fram ett dagsschema för oss att följa under våra två veckor i landet. Schemat innehöll
+            tips på sevärdheter, attraktioner och hotell att bo på under vägen. I Australien hjälpte Jonas föräldrar oss
+            att hitta de bästa aktiviteterna omkring Brisbane.
+          </p>
+          <p>
+            För oss var detta otroligt värdefullt, och därför kan också ni få ta del av vår resrutt. Här nedan finns en
+            karta där de större delen av de stopp vi gjort på Nya Zeeland och i Australien finns utmärkta. Vill du ha
+            mer detaljerad information om de olika destinationerna kan du klicka dig in på någon av länkarna till
+            vänster.
+          </p>
+
+          <div id="googlemap">
+            <iframe
+              width="700"
+              height="400"
+              frameborder="0"
+              scrolling="no"
+              marginheight="0"
+              marginwidth="0"
+              src="https://maps.google.se/maps/ms?msa=0&amp;msid=214815164946569323998.0004bfe897c0b0f5cd62d&amp;hl=sv&amp;ie=UTF8&amp;t=m&amp;ll=-36.412358,164.058034&amp;spn=19.45885,25.709197&amp;output=embed"
+            ></iframe
+            ><br /><small
+              >Visa
+              <a
+                href="https://maps.google.se/maps/ms?msa=0&amp;msid=214815164946569323998.0004bfe897c0b0f5cd62d&amp;hl=sv&amp;ie=UTF8&amp;t=m&amp;ll=-36.412358,164.058034&amp;spn=19.45885,25.709197&amp;source=embed"
+                style="color: #0000ff; text-align: left"
+                target="_blank"
+                >större karta</a
+              ></small
+            >
+          </div>
+        </div>
+        <!-- End div id="content"-->
+      </div>
+      <!-- End div id="main"-->
+
+      <div id="footer">
+        <!-- Footer -->
+        <p>Utvecklad av Christian Söderberg | <span style="color: #a00a0a">Senast uppdaterad: Juni 2012</span></p>
+        <div id="kiwiDiv">
+          <img src="footer/kiwi.png" alt="Kiwi" id="kiwi" />
+        </div>
+      </div>
+      <!-- End id="footer" -->
     </div>
-  </div> <!-- End div id="content"-->
-     
- </div> <!-- End div id="main"-->
-
- <div id="footer"> <!-- Footer -->
-   <p>Utvecklad av Christian Söderberg | <span style="color:#A00A0A">Senast uppdaterad: Juni 2012</span></p>
-   <div id="kiwiDiv">
-    	<img src="footer/kiwi.png" alt="Kiwi" id="kiwi" />
-   </div>
- </div> <!-- End id="footer" -->
-	
-</div> <!-- End id="wrapper" -->
-    
-</body>
+    <!-- End id="wrapper" -->
+  </body>
 </html>
