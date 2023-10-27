@@ -10,7 +10,7 @@
   float: right;
 }
 .prevNext {
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   padding: 5px;
 }
 .prevNext a {
@@ -29,9 +29,9 @@
 }
 .splitter {
   color: var(--red);
+  font-size: var(--font-size-lg);
   text-shadow: var(--heading-text-shadow) 1px 1px;
   text-align: center;
-  font-size: 24px;
   margin: -0.5em;
 }
 

@@ -33,7 +33,7 @@
   cursor: pointer;
   top: 20px;
   right: 20px;
-  font-size: 36px;
+  font-size: var(--font-size-xl);
   font-family: sans-serif;
   font-weight: bold;
   color: var(--white);

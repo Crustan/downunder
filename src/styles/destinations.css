@@ -4,11 +4,11 @@ iframe {
 }
 
 h5 {
-  margin: -3px;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: var(--font-size-sm);
+  font-weight: normal;
   display: inline;
   padding: 0em;
+  margin: -3px;
 }
 
 table td {

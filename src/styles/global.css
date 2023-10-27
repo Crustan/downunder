@@ -1,10 +1,21 @@
 :root {
+  --font-body: "Grandesign Neue Serif", serif;
+  --font-heading: "Bree Serif", serif;
+
+  --font-size-xs: 0.8rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.5rem;
+  --font-size-xl: 2.25rem;
+  --font-size-xxl: 4.5rem;
+
   --black: #232323;
   --blue: #021b9c;
   --green: #9fd781;
   --red: #a00a0a;
   --yellow: #f2d908;
   --white: #f7f8e1;
+
   --bg: var(--white);
   --header-bg: var(--yellow);
   --header-border-color: var(--red);
@@ -18,9 +29,11 @@
   --heading-color: var(--blue);
   --heading-text-shadow: var(--green);
   --heading-text-shadow-2: var(--red);
+  --heading-font-size-1: var(--font-size-xxl);
+  --heading-font-size-2: var(--font-size-xl);
+  --heading-font-size-3: var(--font-size-lg);
 
-  --font-body: "Grandesign Neue Serif", serif;
-  --font-heading: "Bree Serif", serif;
+  --nav-font-size: var(--font-size-lg);
 }
 
 @font-face {
@@ -31,6 +44,7 @@
 body {
   background: var(--footer-bg);
   font-family: var(--font-body);
+  font-size: var(--font-size-md);
   padding: 0px;
   margin: 0px;
   position: relative;
@@ -55,6 +69,7 @@ h5 {
 /* --- HEADER --- */
 
 #header {
+  font-family: var(--font-heading);
   padding: 10px 0px;
   color: var(--header-color);
   position: relative;
@@ -71,23 +86,22 @@ h5 {
   left: 700px;
 }
 h1 {
-  font-size: 72px;
+  font-size: var(--heading-font-size-1);
   font-weight: 900;
   margin-left: 10px;
   margin-top: 0em;
   margin-bottom: 0em;
-  text-shadow: #9fd781 3px 2px;
+  text-shadow: var(--header-text-shadow) 3px 2px;
   line-height: 0.8;
 }
 #header h2 {
-  font-size: 36px;
+  font-size: var(--heading-font-size-2);
   font-weight: 700;
   margin: 0 0 0 12px;
-  text-shadow: #9fd781 2px 1px;
+  text-shadow: var(--header-text-shadow) 2px 1px;
   line-height: 1;
 }
 #headerNav {
-  font-family: var(--font-heading);
   background: var(--header-bg);
   width: 100%;
   min-width: 1000px;
@@ -99,7 +113,9 @@ h1 {
 /* --- NAVIGATION --- */
 
 #navigation {
-  background: #f2d908;
+  font-family: var(--font-heading);
+  font-size: var(--nav-font-size);
+  background: var(--header-bg);
   min-width: 800px;
   padding-left: 200px;
   display: block;
@@ -109,33 +125,24 @@ h1 {
   z-index: 0;
 }
 #navigation a {
-  background: #021b9c;
+  background: var(--blue);
+  color: var(--white);
   display: inline;
   position: relative;
-  font-size: 24px;
   text-decoration: none;
-  color: #f7f8e1;
-  text-shadow: #a00a0a 1px 1px;
+  text-shadow: var(--heading-text-shadow-2) 1px 1px;
   margin: 0px 5px;
   padding: 5px 7px 3px 7px;
 }
-#navigation a:hover {
-  background: #f7f8e1;
-  color: #021b9c;
+#navigation a:hover,
+#navigation a.thisPage {
+  background: var(--bg);
+  color: var(--blue);
   padding: 3px 8px 6px 8px;
   margin: 2px;
-  border: solid 3px #a00a0a;
-  border-bottom: none;
-  z-index: 10;
-}
-#navigation a.thisPage {
-  background: #f7f8e1;
-  color: #021b9c;
-  padding: 3px 8px 6px 8px;
-  margin: 0px 2px;
   border: 3px solid var(--header-border-color);
   border-bottom: none;
-  z-index: 100;
+  z-index: 10;
 }
 
 /* --- MAIN SECTION --- */
@@ -157,42 +164,44 @@ h1 {
   padding: 10px;
   position: relative;
 }
+
+#localNav h4 {
+  margin: 0px;
+  margin-bottom: 3px;
+  padding: 5px;
+  color: var(--white);
+  text-shadow: var(--heading-text-shadow-2) 1px 1px;
+  font-weight: 100;
+  text-decoration: none;
+  background: var(--blue);
+}
+
 #localNav a {
-  --hover-color: var(--green);
+  --hover-bg: var(--green);
   display: block;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: var(--link-color);
   text-decoration: none;
   padding: 2px 0px;
 
   &:hover {
     display: block;
-    background: var(--hover-color) !important;
-    font-size: 14px;
+    background: var(--hover-bg) !important;
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+  }
+  &.thisLocal {
+    display: block;
+    font-size: var(--font-size-sm);
+    color: var(--blue);
+    background: #9fd781 !important;
     text-decoration: none;
   }
 }
 
-#localNav h4 {
-  margin: 0px;
-  margin-bottom: 3px;
-  padding: 5px;
-  color: #f7f8e1;
-  text-shadow: #a00a0a 1px 1px;
-  font-weight: 100;
-  text-decoration: none;
-  background: #021b9c;
-}
-.thisLocal {
-  display: block;
-  font-size: 14px;
-  color: #021b9c;
-  background: #9fd781 !important;
-  text-decoration: none;
-}
 /* -- CONTENT -- */
 #content {
-  background: #f7f8e1;
+  background: var(--bg);
   padding: 10px;
   float: left;
   position: relative;
@@ -203,10 +212,10 @@ h1 {
 }
 #content h2 {
   font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
   color: var(--heading-color);
-  font-size: 36px;
-  margin: 0px;
   text-shadow: var(--heading-text-shadow) 2px 1px;
+  margin: 0px;
 }
 #content h3 {
   font-family: var(--font-heading);
@@ -214,13 +223,12 @@ h1 {
 }
 #content h4 {
   font-family: var(--font-heading);
+  font-weight: 100;
   color: var(--heading-color);
   text-shadow: var(--heading-text-shadow) 1px 1px;
   margin: 1em 0px 0em;
-  font-weight: 100;
 }
 #content p {
-  font-size: 16px;
   margin-top: 0px;
   text-align: justify;
 }
@@ -243,21 +251,20 @@ h1 {
   width: 190px;
 }
 #rightCol h3 {
-  margin: 0px;
-  color: #021b9c;
-  text-shadow: var(--heading-text-shadow) 1px 1px;
+  color: var(--heading-color);
   font-weight: 100;
+  text-shadow: var(--heading-text-shadow) 1px 1px;
+  margin: 0px;
 }
 #rightCol h4 {
+  color: var(--heading-color);
   font-family: var(--font-heading);
-  margin: 0px;
-  color: #021b9c;
-  text-shadow: var(--heading-text-shadow) 1px 1px;
   font-weight: 100;
+  text-shadow: var(--heading-text-shadow) 1px 1px;
   text-decoration: none;
+  margin: 0px;
 }
 #rightCol p {
-  font-size: 16px;
   margin-top: 0px;
 }
 #rightCol a {
@@ -274,10 +281,10 @@ h1 {
 /* --- FOOTER --- */
 #footer {
   background: var(--footer-bg);
+  font-size: var(--font-size-xs);
   clear: both;
   width: 100%;
   padding: 0.1em 0px;
-  font-size: 12px;
 }
 #footer p {
   margin-left: 10px;
