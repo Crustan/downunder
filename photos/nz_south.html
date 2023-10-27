@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>Söderberg Down Under | Fotoalbum | Nya Zeeland: Sydön</title>
-    <link rel="stylesheet" href="../src/styles/global.css" />
-    <link rel="stylesheet" href="../src/styles/albums.css" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <link rel="stylesheet" href="/src/styles/albums.css" />
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Bree+Serif|Fugaz+One|Brawler" />
-    <script defer src="../src/scripts/fullslideshow.js"></script>
+    <script defer src="/src/scripts/fullslideshow.js"></script>
   </head>
 
   <body>
@@ -16,9 +16,9 @@
     <div id="fullScrSlideshow">
       <!-- Full Screen Slideshow -->
       <span id="exit" onclick="hideSlideshow()">X</span>
-      <img src="../src/images/slideshow/prev.png" id="ssNavLeft" alt="Visa föregående bild" onclick="showPrevPict()" />
+      <img src="/src/images/slideshow/prev.png" id="ssNavLeft" alt="Visa föregående bild" onclick="showPrevPict()" />
       <img src="" id="ssPicture" alt="Bildspel" />
-      <img src="../src/images/slideshow/next.png" id="ssNavRight" alt="Visa nästa bild" onclick="showNextPict()" />
+      <img src="/src/images/slideshow/next.png" id="ssNavRight" alt="Visa nästa bild" onclick="showNextPict()" />
     </div>
 
     <div id="wrapper">
@@ -27,8 +27,8 @@
         <!-- Header and navigation -->
         <div id="header">
           <!-- Page Header -->
-          <img src="../src/images/map.png" id="pic0" alt="Oceanien" />
-          <img src="../src/images/headerqoute.png" id="pic1" alt="Skippa charter och få en upplevelse för livet!" />
+          <img src="/src/images/map.png" id="pic0" alt="Oceanien" />
+          <img src="/src/images/headerqoute.png" id="pic1" alt="Skippa charter och få en upplevelse för livet!" />
           <h2>SÖDERBERG</h2>
           <h1>DOWN UNDER</h1>
         </div>
@@ -36,10 +36,10 @@
 
         <div id="navigation">
           <!-- Global navigation -->
-          <a href="../index.html">START</a>
-          <a href="../diaries.html">RESEDAGBÖCKER</a>
-          <a href="../photos.html" class="thisPage">FOTOALBUM</a>
-          <a href="../destinations.html">DESTINATIONER</a>
+          <a href="/">START</a>
+          <a href="/diaries">RESEDAGBÖCKER</a>
+          <a href="/photos" class="thisPage">FOTOALBUM</a>
+          <a href="/destinations">DESTINATIONER</a>
         </div>
         <!-- End div id="navigation"-->
       </div>
@@ -50,11 +50,12 @@
         <div id="localNav">
           <!-- Local navigation -->
           <h4>Fotoalbum</h4>
-          <a href="nz_north.html">Nya Zeeland: Nordön</a>
-          <a href="nz_south.html" class="thisLocal">Nya Zeeland: Sydön</a>
-          <a href="au_brisbane.html">Australien: Brisbane</a>
-          <a href="au_goldcoast.html">Australien: Guldkusten</a>
-          <a href="singapore.html">Singapore</a>
+          <a href="/photos/nz_north.html">Nya Zeeland: Nordön</a>
+          <a href="/photos/nz_south.html" class="thisLocal">Nya Zeeland: Sydön</a>
+          <a href="/photos/au_brisbane.html">Australien: Brisbane</a>
+          <a href="/photos/au_goldcoast.html">Australien: Guldkusten</a>
+          <a href="/photos/singapore.html">Singapore</a>
+          <a href="/photos/bungymovie.html">Film: Bungyjump</a>
         </div>
         <!-- End div id="localNav" -->
 
@@ -68,24 +69,14 @@
           <p>Klicka på en bild för att visa bilderna för den dagen i ett bildspel.</p>
 
           <div class="albumDay">
-            <img
-              src="../src/db/photos/day8/day8_19.jpg"
-              alt="Foton: Dag 8"
-              height="150"
-              onclick="showSlideshow(8,33)"
-            />
+            <img src="/src/db/photos/day8/day8_19.jpg" alt="Foton: Dag 8" height="150" onclick="showSlideshow(8,33)" />
             <div class="albumText">
               <h4>18 december:</h4>
               <p>Flyg till sydön, bilfärd över till västkusten med stopp i Castle Hill och Pancake Rocks.</p>
             </div>
           </div>
           <div class="albumDay">
-            <img
-              src="../src/db/photos/day9/day9_22.jpg"
-              alt="Foton: Dag 9"
-              height="150"
-              onclick="showSlideshow(9,23)"
-            />
+            <img src="/src/db/photos/day9/day9_22.jpg" alt="Foton: Dag 9" height="150" onclick="showSlideshow(9,23)" />
             <div class="albumText">
               <h4>19 december:</h4>
               <p>Från Greymouth till Haast. Isiga Fox Glacier och bad i Lake Moeraki på samma dag.</p>
@@ -93,7 +84,7 @@
           </div>
           <div class="albumDay">
             <img
-              src="../src/db/photos/day10/day10_0.jpg"
+              src="/src/db/photos/day10/day10_0.jpg"
               alt="Foton: Dag 10"
               height="150"
               onclick="showSlideshow(10,9)"
@@ -105,7 +96,7 @@
           </div>
           <div class="albumDay">
             <img
-              src="../src/db/photos/day11/day11_0.jpg"
+              src="/src/db/photos/day11/day11_0.jpg"
               alt="Foton: Dag 11"
               height="150"
               onclick="showSlideshow(11,7)"
@@ -117,7 +108,7 @@
           </div>
           <div class="albumDay">
             <img
-              src="../src/db/photos/day12/day12_0.jpg"
+              src="/src/db/photos/day12/day12_0.jpg"
               alt="Foton: Dag 12"
               height="150"
               onclick="showSlideshow(12,15)"
@@ -129,7 +120,7 @@
           </div>
           <div class="albumDay">
             <img
-              src="../src/db/photos/day13/day13_0.jpg"
+              src="/src/db/photos/day13/day13_0.jpg"
               alt="Foton: Dag 13"
               height="150"
               onclick="showSlideshow(13,8)"
@@ -141,7 +132,7 @@
           </div>
           <div class="albumDay">
             <img
-              src="../src/db/photos/day14/day14_0.jpg"
+              src="/src/db/photos/day14/day14_0.jpg"
               alt="Foton: Dag 14"
               height="150"
               onclick="showSlideshow(14,20)"
@@ -153,7 +144,7 @@
           </div>
           <div class="albumDay">
             <img
-              src="../src/db/photos/day15/day15_0.jpg"
+              src="/src/db/photos/day15/day15_0.jpg"
               alt="Foton: Dag 15"
               height="150"
               onclick="showSlideshow(15,12)"
@@ -165,7 +156,7 @@
           </div>
           <div class="albumDay">
             <img
-              src="../src/db/photos/day16/day16_0.jpg"
+              src="/src/db/photos/day16/day16_0.jpg"
               alt="Foton: Dag 16"
               height="150"
               onclick="showSlideshow(16,2)"
@@ -184,7 +175,7 @@
         <!-- Footer -->
         <p>Utvecklad av Christian Söderberg | <span style="color: #a00a0a">Senast uppdaterad: Juni 2012</span></p>
         <div id="kiwiDiv">
-          <img src="../src/images/kiwi.png" alt="Kiwi" id="kiwi" />
+          <img src="/src/images/kiwi.png" alt="Kiwi" id="kiwi" />
         </div>
       </div>
       <!-- End id="footer" -->
