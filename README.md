@@ -8,6 +8,8 @@ Work with feature branches. Do not squash merge.
 
 The goal is to have one "feature" branch and pull request per issue.
 
+Commits and pull request should be follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary).
+
 A branch should have the correct prefix for the issue (`fix`, `feat`, `test`), correct issue number (`1`), and description (usually issue title).
 
 | Prefix | Meaning                                           |
