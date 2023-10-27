@@ -94,7 +94,7 @@ function markDay(day) {
 
 function initSlideShow(day, pic_amount) {
   // Initiera bildspelet med dagens första foto
-  ssPict.src = "./src/db/photos/day" + day + "/day" + day + "_0.jpg";
+  ssPict.src = "/src/db/photos/day" + day + "/day" + day + "_0.jpg";
   num_of_pics = pic_amount;
 }
 
@@ -108,9 +108,9 @@ function showPrevPict() {
 
   if (day_pic_nr != 0)
     // Så länge inte första bilden visas
-    ssPict.src = "./src/db/photos/day" + the_day + "/" + f_name + (Number(day_pic_nr) - 1) + ".jpg";
+    ssPict.src = "/src/db/photos/day" + the_day + "/" + f_name + (Number(day_pic_nr) - 1) + ".jpg";
   // Ändra sökvägen till föregående bild
-  else ssPict.src = "./src/db/photos/day" + the_day + "/" + f_name + (Number(num_of_pics) - 1) + ".jpg";
+  else ssPict.src = "/src/db/photos/day" + the_day + "/" + f_name + (Number(num_of_pics) - 1) + ".jpg";
 }
 function showNextPict() {
   // Visa nästa bild i dagens bildspel
@@ -122,11 +122,11 @@ function showNextPict() {
 
   if (day_pic_nr != num_of_pics - 1) {
     // Så länge inte sista bilden visas
-    ssPict.src = "./src/db/photos/day" + the_day + "/" + f_name + (Number(day_pic_nr) + 1) + ".jpg"; // Ändra sökvägen till nästa bild
+    ssPict.src = "/src/db/photos/day" + the_day + "/" + f_name + (Number(day_pic_nr) + 1) + ".jpg"; // Ändra sökvägen till nästa bild
   } else {
     // Annars visas första bilden igen
     day_pic_nr = 0;
-    ssPict.src = "./src/db/photos/day" + the_day + "/" + f_name + Number(day_pic_nr) + ".jpg";
+    ssPict.src = "/src/db/photos/day" + the_day + "/" + f_name + Number(day_pic_nr) + ".jpg";
   }
 }
 
@@ -148,7 +148,7 @@ function loadXMLDoc(url) {
 }
 
 function writeDay() {
-  var xml_document = loadXMLDoc("./src/db/diaries.xml");
+  var xml_document = loadXMLDoc("/src/db/diaries.xml");
   var entries = xml_document.getElementsByTagName("entry"); // Skapa en array med alla inlägg
 
   var date_entries = new Array(); // Skapa en array med endast dagens inlägg
@@ -213,7 +213,7 @@ function writeDay() {
 }
 
 function writePerson(name) {
-  var xml_document = loadXMLDoc("./src/db/diaries.xml");
+  var xml_document = loadXMLDoc("/src/db/diaries.xml");
   var entries = xml_document.getElementsByTagName("entry"); // Skapa en array med alla inlägg
   var author_entries = new Array(); // Skapa en array med för endast författarens inlägg
   var HTML_diaries = ""; // Tom sträng initieras för den HTML som ska visas i <div id="diaries">
