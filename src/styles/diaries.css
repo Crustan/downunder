@@ -3,35 +3,35 @@
 
 /* -- CONTENT DIARIES -- */
 .day {
-  color: #021b9c;
+  color: var(--heading-color);
   float: right;
 }
 .place {
   float: right;
 }
 .prevNext {
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   padding: 5px;
 }
 .prevNext a {
   text-decoration: none;
-  color: #021b9c;
+  color: var(--link-color);
 }
 .author {
   margin-left: 20px;
-  color: #a00a0a;
-  text-shadow: #9fd781 1px 1px;
+  color: var(--red);
+  text-shadow: var(--heading-text-shadow) 1px 1px;
 }
 .date {
   margin-left: 20px;
-  color: #a00a0a;
-  text-shadow: #9fd781 1px 1px;
+  color: var(--red);
+  text-shadow: var(--heading-text-shadow) 1px 1px;
 }
 .splitter {
-  color: #a00a0a;
-  text-shadow: #9fd781 1px 1px;
+  color: var(--red);
+  font-size: var(--font-size-lg);
+  text-shadow: var(--heading-text-shadow) 1px 1px;
   text-align: center;
-  font-size: 24px;
   margin: -0.5em;
 }
 
@@ -59,13 +59,13 @@
 }
 #ssPic {
   margin: 0px 3px;
-  background: #f7f8e1;
-  border: solid 1px #9fd781;
+  background: var(--bg);
+  border: var(--border-main);
   padding: 8px;
 }
 /* -- CONTENT INTRO DIARIES -- */
 #intro img {
-  border: 1px solid #9fd781;
+  border: var(--border-main);
   padding: 8px;
   margin: 0px 10px 10px 0px;
 }
