@@ -96,3 +96,11 @@ function checkTextForLineBreaks(text) {
 
   return new_text;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const person = document.body.dataset["person"];
+
+  if (!person) return;
+
+  writePerson(person);
+});
