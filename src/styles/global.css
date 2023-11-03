@@ -190,7 +190,7 @@ h1 {
     font-size: var(--font-size-sm);
     text-decoration: none;
   }
-  &.thisLocal {
+  &[aria-current] {
     display: block;
     font-size: var(--font-size-sm);
     color: var(--blue);
