@@ -135,7 +135,7 @@ h1 {
   padding: 5px 7px 3px 7px;
 }
 #navigation a:hover,
-#navigation a.thisPage {
+#navigation [aria-current] {
   background: var(--bg);
   color: var(--blue);
   padding: 3px 8px 6px 8px;
@@ -190,7 +190,7 @@ h1 {
     font-size: var(--font-size-sm);
     text-decoration: none;
   }
-  &.thisLocal {
+  &[aria-current] {
     display: block;
     font-size: var(--font-size-sm);
     color: var(--blue);
