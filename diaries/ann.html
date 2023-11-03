@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/src/styles/global.css" />
     <link rel="stylesheet" href="/src/styles/diaries.css" />
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Bree+Serif" />
+    <script type="module" defer src="/src/scripts/components/index.js"></script>
     <script type="module" defer src="/src/scripts/diary.js"></script>
   </head>
 
@@ -14,27 +15,12 @@
     <div id="wrapper">
       <!-- Page Wrapper -->
 
-      <div id="headerNav">
-        <!-- Header and navigation -->
-        <div id="header">
-          <!-- Page Header -->
-          <img src="/src/images/map.png" id="pic0" alt="Oceanien" />
-          <img src="/src/images/headerqoute.png" id="pic1" alt="Skippa charter och få en upplevelse för livet!" />
-          <h2>SÖDERBERG</h2>
-          <h1>DOWN UNDER</h1>
-        </div>
-        <!-- End div id="header"-->
-
-        <div id="navigation">
-          <!-- Global navigation -->
-          <a href="/">START</a>
-          <a href="/diaries" class="thisPage">RESEDAGBÖCKER</a>
-          <a href="/photos">FOTOALBUM</a>
-          <a href="/destinations">DESTINATIONER</a>
-        </div>
-        <!-- End div id="navigation"-->
-      </div>
-      <!-- End div id="headerNav"-->
+      <c-header>
+        <a slot="nav" href="/">START</a>
+        <a slot="nav" href="/diaries" aria-current="page">RESEDAGBÖCKER</a>
+        <a slot="nav" href="/photos">FOTOALBUM</a>
+        <a slot="nav" href="/destinations">DESTINATIONER</a>
+      </c-header>
 
       <div id="main">
         <!-- Main content section -->
@@ -104,14 +90,7 @@
       </div>
       <!-- End div id="main"-->
 
-      <div id="footer">
-        <!-- Footer -->
-        <p>Utvecklad av Christian Söderberg | <span style="color: #a00a0a">Senast uppdaterad: Juni 2012</span></p>
-        <div id="kiwiDiv">
-          <img src="/src/images/kiwi.png" alt="Kiwi" id="kiwi" />
-        </div>
-      </div>
-      <!-- End id="footer" -->
+      <c-footer></c-footer>
     </div>
     <!-- End id="wrapper" -->
   </body>

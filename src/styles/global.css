@@ -66,76 +66,9 @@ h5 {
   min-width: 1000px;
 }
 
-/* --- HEADER --- */
-
-#header {
-  font-family: var(--font-heading);
-  padding: 10px 0px;
-  color: var(--header-color);
-  position: relative;
-  min-width: 1000px;
-}
-#header #pic0 {
-  position: absolute;
-  top: 15px;
-  left: 550px;
-}
-#header #pic1 {
-  position: absolute;
-  top: 15px;
-  left: 700px;
-}
-h1 {
-  font-size: var(--heading-font-size-1);
-  font-weight: 900;
-  margin-left: 10px;
-  margin-top: 0em;
-  margin-bottom: 0em;
-  text-shadow: var(--header-text-shadow) 3px 2px;
-  line-height: 0.8;
-}
-#header h2 {
-  font-size: var(--heading-font-size-2);
-  font-weight: 700;
-  margin: 0 0 0 12px;
-  text-shadow: var(--header-text-shadow) 2px 1px;
-  line-height: 1;
-}
-#headerNav {
-  background: var(--header-bg);
-  width: 100%;
-  min-width: 1000px;
-  height: 153px;
-  border-bottom: 3px solid var(--header-border-color);
-  padding: 0px;
-  margin: 0px;
-}
-/* --- NAVIGATION --- */
-
-#navigation {
-  font-family: var(--font-heading);
-  font-size: var(--nav-font-size);
-  background: var(--header-bg);
-  min-width: 800px;
-  padding-left: 200px;
-  display: block;
-  position: absolute;
-  padding-bottom: 0px;
-  top: 120px;
-  z-index: 0;
-}
-#navigation a {
-  background: var(--blue);
-  color: var(--white);
-  display: inline;
-  position: relative;
-  text-decoration: none;
-  text-shadow: var(--heading-text-shadow-2) 1px 1px;
-  margin: 0px 5px;
-  padding: 5px 7px 3px 7px;
-}
-#navigation a:hover,
-#navigation a.thisPage {
+/* --- NAV --- */
+c-header a:hover,
+c-header a[aria-current] {
   background: var(--bg);
   color: var(--blue);
   padding: 3px 8px 6px 8px;
@@ -276,30 +209,6 @@ h1 {
   border: var(--border-main);
   padding: 8px;
   text-align: center;
-}
-
-/* --- FOOTER --- */
-#footer {
-  background: var(--footer-bg);
-  font-size: var(--font-size-xs);
-  clear: both;
-  width: 100%;
-  padding: 0.1em 0px;
-}
-#footer p {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-#kiwiDiv {
-  position: relative;
-  @media screen and (max-width: 1280px) {
-    display: none;
-  }
-}
-#kiwi {
-  position: absolute;
-  bottom: 10px;
-  right: 0px;
 }
 
 iframe {
